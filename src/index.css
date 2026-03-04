@@ -1,16 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk');
-
 body {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Host Grotesk, sans-serif;
+    padding: 2rem;
+    min-height: 200vh;
+    font-family: "Michroma", sans-serif;
 }
 
-:root, #root {
-    width: 100%;
-    height: 100%;
+:root, #root, body {
     box-sizing: border-box;
 }
 

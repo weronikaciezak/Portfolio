@@ -3,10 +3,12 @@ import ColorPalette from "../values/ColorPalette.tsx";
 
 export const Background = createGlobalStyle`
     body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: ${ColorPalette.background.hex || '#121212'};
+        background-image:
+                radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(180deg, ${ColorPalette.background.hex} 0%, ${ColorPalette.primary.hex} 100%);
+        background-size: 20px 20px, 100% 100%;
+        background-position: 0 0, 0 0;
+        
         color: ${ColorPalette.text.hex || '#FFFFFF'};
     }
 `;
