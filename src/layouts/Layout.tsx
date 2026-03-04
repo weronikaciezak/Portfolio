@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import styled from "styled-components";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -13,14 +14,26 @@ export const Layout = ({ children, title } : LayoutProps ) => {
     }, [title]);
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <LayoutContainer>
             <Navbar />
 
-            <main className="flex-grow container mx-auto px-4 py-8">
+            <MainContent>
                 {children}
-            </main>
+            </MainContent>
 
             <Footer />
-        </div>
+        </LayoutContainer>
     );
 };
+
+const LayoutContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+`;
+
+const MainContent = styled.main`
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 2rem 3rem;
+`;

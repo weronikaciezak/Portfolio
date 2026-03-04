@@ -1,39 +1,38 @@
+import {Layout} from "../layouts/Layout.tsx";
 import styled from "styled-components";
 import ColorPalette from "../values/ColorPalette.tsx";
-import {Layout} from "../layouts/Layout.tsx";
 
 export const MainPage = () => {
     return (
-        <Layout title="Portfolio Weronika Ciężak">
-            <Columns>
-                <Column><Box height={'20%'}/> <Box/></Column>
-                <Column><Box height={'20%'}/> <Box/></Column>
-                <Column><Box height={'20%'}/> <Box/></Column>
-                <Column><Box height={'20%'}/> <Box/></Column>
-            </Columns>
+        <Layout title="Weronika Ciężak | Portfolio">
+            <Container>
+                <Font>Lublin, Poland</Font>
+                <Title>FULL-STACK DEVELOPER</Title>
+            </Container>
+            <Container>
+                <div>Hi, my name is Weronika and I'm a software developer.</div>
+                <div>Currently I am a Computer Science student.</div>
+            </Container>
         </Layout>
     )
 }
-
-const Columns = styled.div`
+const Container = styled.div`
     display: flex;
-    height: 100vh;
-`
-
-const Column = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 10px;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-`
-const Box = styled.div<{ height?: string }>`
-    background-color: ${ColorPalette.header.hex};
-    border-radius: 20px;
-    width: 100%;
-    height: ${props => props.height || '100%'};
-`
+    padding: 0 0 1.5rem 0;
+`;
+
+const Title = styled.div`
+    background: linear-gradient(90deg, ${ColorPalette.secondary.hex} 0%, ${ColorPalette.primary.hex} 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 2rem;
+`;
+
+const Font = styled.div`
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 1rem;
+    padding: 0 0 0.5rem 0;
+`;

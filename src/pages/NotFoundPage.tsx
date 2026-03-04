@@ -1,9 +1,21 @@
-import {Layout} from "../layouts/Layout.tsx";
+import styled from "styled-components";
+import {useEffect} from "react";
 
 export const NotFoundPage = () => {
+    useEffect(() => {
+        document.title = "Page Not Found";
+    }, []);
+
     return(
-        <Layout title={"Page Not Found"}>
-            <a>404 Page Not Found</a>
-        </Layout>
+        <Container title="Page Not Found">
+            <div>404 Page Not Found</div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+`;
