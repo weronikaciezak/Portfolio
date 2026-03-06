@@ -6,6 +6,16 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+:root {
+    --margin-xxs: 0.25rem;
+    --margin-xs: 0.5rem;
+    --margin-s: 0.75rem;
+    --margin-m: 1rem;
+    --margin-l: 1.25rem;
+    --margin-xl: 1.75rem;
+    --margin-xxl: 2.5rem;
+}
+
 :root, #root, body {
     margin: 0;
     padding: 0;
