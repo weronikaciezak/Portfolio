@@ -58,13 +58,13 @@ const Tile = styled.div`
 
 
 const Container = styled.div`
-    //display: flex;
-    //flex-wrap: wrap;
-    ////gap: '10px';
-    //justify-content: space-around;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px; 
-    justify-items: center; /* Środkuje kafelki w ich własnych komórkach */
+    display: flex;
+    flex-wrap: wrap;
+    //gap: '10px';
+    justify-content: space-around;
+    //display: grid;
+    //grid-template-columns: repeat(5, 1fr);
+    //gap: 20px; 
+    //justify-items: center; /* Środkuje kafelki w ich własnych komórkach */
 `;
 
