@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Footer = () => {
     return(
         <Container>
-            <div>Contact me</div>
-            <div>email | LinkedIn | Github</div>
+            <div>Designed and coded by Weronika Ciężak © 2026</div>
         </Container>
     )
 }

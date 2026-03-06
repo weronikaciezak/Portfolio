@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {MainPage} from "./pages/MainPage";
-import {Projects} from "./pages/Projects";
+import {Resume} from "./pages/Resume.tsx";
 import {NotFoundPage} from "./pages/NotFoundPage";
 import {Background} from "./components/Background.tsx";
 
@@ -10,7 +10,7 @@ export const App = () => {
             <Background/>
             <Routes>
                 <Route path="/" element={<MainPage/>}/>
-                <Route path="/projects" element={<Projects/>}/>
+                <Route path="/resume" element={<Resume/>}/>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>

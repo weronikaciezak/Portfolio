@@ -30,10 +30,13 @@ const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 200vh;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
 `;
 
 const MainContent = styled.main`
+    padding: 0 1rem;
     flex-grow: 1;
     flex-direction: column;
-    padding: 2rem 3rem;
 `;

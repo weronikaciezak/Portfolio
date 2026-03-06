@@ -2,31 +2,46 @@ import styled from "styled-components";
 
 export const Navbar = () => {
     return(
-        <Container>
-            <Title>Weronika Ciężak</Title>
+        <Wrapper>
             <Container>
-                <SmallTitle>email</SmallTitle>
-                <SmallTitle>linkedin</SmallTitle>
+                <SmallTitle>Home</SmallTitle>
+                <SmallTitle>Resume</SmallTitle>
+                <SmallTitle>Contact</SmallTitle>
             </Container>
-        </Container>
+            <Container gap={'0.5rem'}>
+                <Dot></Dot>
+                <Font>Open to work</Font>
+            </Container>
+        </Wrapper>
     )
 }
 
-const Container = styled.div`
+const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 4rem 1rem;
 `;
 
-
-const Title = styled.div`
-    font-family: "Special Gothic Expanded One", sans-serif;
-    font-size: 2.5rem;
-    padding: 3rem;
+const Container = styled.div<{gap?: string}>`
+    display: flex;
+    align-items: center;
+    gap: ${props => props.gap || '3.5rem'};
 `;
 
 const SmallTitle = styled.div`
-    font-family: "Special Gothic Expanded One", sans-serif;
-    font-size: 1.5rem;
-    padding: 3rem;
+    font-family: "Unbounded", sans-serif;
+    font-size: 0.80rem;
+`;
+
+const Font = styled.div`
+    font-family: "Young Serif", sans-serif;
+    font-size: 0.80rem;
+`;
+
+const Dot = styled.div`
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: green;
 `;
