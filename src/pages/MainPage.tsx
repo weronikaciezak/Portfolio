@@ -1,38 +1,50 @@
 import {Layout} from "../layouts/Layout.tsx";
+import {SkillsSection} from "../components/SkillsSection.tsx";
 import styled from "styled-components";
 import ColorPalette from "../values/ColorPalette.tsx";
 
 export const MainPage = () => {
+
     return (
         <Layout title="Weronika Ciężak | Portfolio">
-            <Container>
-                <Font>Lublin, Poland</Font>
-                <Title>FULL-STACK DEVELOPER</Title>
-            </Container>
-            <Container>
-                <div>Hi, my name is Weronika and I'm a software developer.</div>
-                <div>Currently I study Computer Science at UMCS.</div>
-            </Container>
+            <Title>SOFTWARE DEVELOPER</Title>
+
+            <div style={{display: 'flex', gap: '10px', fontSize: '2rem', padding: '0 0 0.6rem 0'}}>
+                <Name>hi I'm Weronika Ciężak</Name>
+                <div>🖐</div>
+            </div>
+
+            <div>I am a computer science student from Poland 🇵🇱</div>
+            <div>I create full-stack applications. </div>
+
+            <H2>Tools I worked with</H2>
+
+            <SkillsSection />
         </Layout>
     )
 }
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 0 0 1.5rem 0;
-`;
 
 const Title = styled.div`
-    background: linear-gradient(90deg, ${ColorPalette.secondary.hex} 0%, ${ColorPalette.primary.hex} 20%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: ${ColorPalette.header.hex};
     background-clip: text;
-    font-family: "Special Gothic Expanded One", sans-serif;
-    font-size: 2rem;
+    color: transparent;
+    font-family: "Unbounded", sans-serif;
+    font-size: 1.2rem;
+    padding: 5.5rem 0 0.2rem 0;
 `;
 
-const Font = styled.div`
-    font-family: "Special Gothic Expanded One", sans-serif;
-    font-size: 1rem;
-    padding: 0 0 0.5rem 0;
+const Name = styled.div`
+    background: ${ColorPalette.text.hex};
+    background-clip: text;
+    color: transparent;
+    font-family: "Unbounded", sans-serif;
+    font-size: 2.3rem;
 `;
+
+const H2 = styled.div`
+    font-family: "Unbounded", sans-serif;
+    font-size: 1.3rem;
+    padding: 6rem 0 1.3rem 0;
+`;
+
+
