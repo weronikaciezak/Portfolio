@@ -1,6 +1,7 @@
+import ColorPalette from "../values/ColorPalette.tsx";
 import styled from "styled-components";
 import {
-    SiCplusplus,
+    SiCplusplus, SiDjango,
     SiDocker,
     SiJenkins,
     SiPostgresql,
@@ -9,62 +10,66 @@ import {
     SiSpringboot
 } from "@icons-pack/react-simple-icons";
 
+
 export const SkillsSection = () => {
     return(
         <Container>
             <Tile>
-                <SiCplusplus color="#00599C" size={50} />
+                <SiCplusplus color={ColorPalette.icons.hex} size={50} />
                 <div>C++</div>
             </Tile>
             <Tile>
-                <SiPython color="#00599C" size={50} />
+                <SiPython color={ColorPalette.icons.hex} size={50} />
                 <div>Python</div>
             </Tile>
             <Tile>
-                <SiReact color="#00599C" size={50} />
+                <SiReact color={ColorPalette.icons.hex} size={50} />
                 <div>React</div>
             </Tile>
             <Tile>
-                <SiDocker color="#00599C" size={50} />
+                <SiDocker color={ColorPalette.icons.hex} size={50} />
                 <div>Docker</div>
             </Tile>
             <Tile>
-                <SiJenkins color="#00599C" size={50} />
+                <SiJenkins color={ColorPalette.icons.hex} size={50} />
                 <div>Jenkins</div>
             </Tile>
             <Tile>
-                <SiSpringboot color="#00599C" size={50} />
+                <SiSpringboot color={ColorPalette.icons.hex} size={50} />
                 <div>Spring Boot</div>
             </Tile>
             <Tile>
-                <SiPostgresql color="#00599C" size={50} />
+                <SiPostgresql color={ColorPalette.icons.hex} size={50} />
                 <div>PostgresSQL</div>
+            </Tile>
+            <Tile>
+                <SiDjango color={ColorPalette.icons.hex} size={50} />
+                <div>Django</div>
             </Tile>
         </Container>
     )
 }
 
 const Tile = styled.div`
-    width: 120px;
+    width: 100px;
     height: 100px;
-    //background-color: #f0f0f0;
-    //border-radius: 8px;
+    padding: 3px;
+    
     display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    
+    background-color: #C2C2C2;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 `;
 
 
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
-    //gap: '10px';
-    justify-content: space-around;
-    //display: grid;
-    //grid-template-columns: repeat(5, 1fr);
-    //gap: 20px; 
-    //justify-items: center; /* Środkuje kafelki w ich własnych komórkach */
+    gap: 20px;
 `;
 
