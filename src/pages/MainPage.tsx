@@ -16,7 +16,7 @@ export const MainPage = () => {
     const copyEmail = () => {
         navigator.clipboard.writeText("weronikaciezak@wp.pl");
         setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 300);
+        setTimeout(() => setIsCopied(false), 400);
     }
 
     return (
@@ -61,12 +61,13 @@ const Title = styled.div`
     color: var(--secondary-color);
     font-family: "Young Serif", sans-serif;
     font-size: 1.5rem;
-    padding: 9rem 0 0 0;
+    padding: 10rem 0 0 0;
 `;
 
 const Name = styled.div`
     font-family: "Unbounded", sans-serif;
-    font-size: 2.5rem;
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    //font-size:2.5rem;
     padding: 0 0 1rem 0;
 `;
 
