@@ -54,4 +54,5 @@ const Dot = styled.div`
     height: 0.5rem;
     border-radius: 50%;
     background-color: green;
+    filter: drop-shadow(0px 0px 2px #81ff81);
 `;

@@ -19,7 +19,7 @@ body {
     --bg2-color: #a2a2a2;
     --text-color: #000000;
     --primary-color: #a2a2a2;
-    --secondary-color: #7D7D7D;
+    --secondary-color: #494848; /*title color*/
     --icon-color: #FFFFFF;
     --accent-color: #7D7D7D;
 }
@@ -30,7 +30,7 @@ body {
     --bg2-color: #6A6A88;
     --text-color: #DFDEF9;
     --primary-color: #665c84;
-    --secondary-color:#DFDEF9;
+    --secondary-color:#DFDEF9; /*title color*/
     --icon-color: #DFDEF9;
     --accent-color: #8375ab;
 }

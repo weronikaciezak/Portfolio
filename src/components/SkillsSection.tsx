@@ -73,15 +73,15 @@ const Tile = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    border-radius: 8px;
     gap: 5px;
     background-color: var(--primary-color);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    //box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    
     transition: transform 0.3s ease, background-color 0.3s ease;
     &:hover {
         background-color: var(--accent-color);
         transform: scale(1.1);
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0);
         filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
     }
 `;
