@@ -1,9 +1,8 @@
-import ColorPalette from "../values/ColorPalette.tsx";
 import styled from "styled-components";
 import {
-    SiCplusplus, SiDjango,
-    SiDocker,
-    SiJenkins,
+    SiCplusplus, SiCss, SiDjango,
+    SiDocker, SiFirebase,
+    SiJenkins, SiKotlin,
     SiPostgresql,
     SiPython,
     SiReact,
@@ -15,37 +14,51 @@ export const SkillsSection = () => {
     return(
         <Container>
             <Tile>
-                <SiCplusplus color={ColorPalette.icons.hex} size={50} />
+                <SiCplusplus color='var(--icon-color)' size={50} />
                 <Text>C++</Text>
             </Tile>
             <Tile>
-                <SiPython color={ColorPalette.icons.hex} size={50} />
+                <SiPython color='var(--icon-color)' size={50} />
                 <Text>Python</Text>
             </Tile>
             <Tile>
-                <SiReact color={ColorPalette.icons.hex} size={50} />
+                <SiKotlin color='var(--icon-color)' size={50} />
+                <Text>Kotlin</Text>
+            </Tile>
+            <Tile>
+                <SiReact color='var(--icon-color)' size={50} />
                 <Text>React</Text>
             </Tile>
             <Tile>
-                <SiDocker color={ColorPalette.icons.hex} size={50} />
+                <SiDocker color='var(--icon-color)' size={50} />
                 <Text>Docker</Text>
             </Tile>
             <Tile>
-                <SiJenkins color={ColorPalette.icons.hex} size={50} />
+                <SiJenkins color='var(--icon-color)' size={50} />
                 <Text>Jenkins</Text>
             </Tile>
             <Tile>
-                <SiSpringboot color={ColorPalette.icons.hex} size={50} />
+                <SiSpringboot color='var(--icon-color)' size={50} />
                 <Text>Spring Boot</Text>
             </Tile>
             <Tile>
-                <SiPostgresql color={ColorPalette.icons.hex} size={50} />
+                <SiPostgresql color='var(--icon-color)' size={50} />
                 <Text>PostgresSQL</Text>
             </Tile>
             <Tile>
-                <SiDjango color={ColorPalette.icons.hex} size={50} />
+                <SiDjango color='var(--icon-color)' size={50} />
                 <Text>Django</Text>
             </Tile>
+            <Tile>
+                <SiFirebase color='var(--icon-color)' size={50} />
+                <Text>Firebase</Text>
+            </Tile>
+            <Tile>
+                <SiCss color='var(--icon-color)' size={50} />
+                <Text>CSS</Text>
+            </Tile>
+
+
         </Container>
     )
 }
@@ -59,7 +72,7 @@ const Tile = styled.div`
     justify-content: flex-end;
     align-items: center;
     gap: 5px;
-    background-color: ${ColorPalette.primary.hex};
+    background-color: var(--primary-color);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 `;
@@ -67,15 +80,16 @@ const Tile = styled.div`
 
 const Container = styled.div`
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 
     :hover {
-        background-color: ${ColorPalette.header.hex};
+        background-color: var(--accent-color);
     }
 `;
 
 const Text = styled.div`
-    color: ${ColorPalette.icons.hex};
+    color: var(--icon-color);
     margin-bottom: 5px;
 `;
