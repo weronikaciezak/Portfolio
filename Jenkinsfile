@@ -12,7 +12,7 @@ pipeline {
         stage('Download repository') {
             steps {
                 git url: 'https://github.com/weronikaciezak/portfolio.git',
-                    branch: 'master'
+                    branch: 'resizing'
             }
         }
 
