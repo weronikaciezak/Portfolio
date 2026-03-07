@@ -91,6 +91,7 @@ const Container = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.25rem;
+
 `;
 
 const Text = styled.div`

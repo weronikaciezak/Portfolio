@@ -30,9 +30,17 @@ const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 200vh;
-    max-width: clamp(47rem, 47vw, 48rem);
-    width: 100%;
+    //width: min(600px, 90%);
+    //width: min(40%, 1200px);
+    max-width: max(50%, 60rem);
+    margin-inline: auto;
+    padding-inline: 24px;
+    //width: 100%;
     margin: 0 auto;
+    
+    @media (max-width: 768px) {
+        max-width: 100%;
+    }
 `;
 
 const MainContent = styled.main`
