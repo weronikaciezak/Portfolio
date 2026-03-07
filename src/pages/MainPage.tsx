@@ -64,7 +64,7 @@ const Title = styled.div`
     padding: 10rem 0 0 0;
 
     @media (max-width: 768px) {
-        padding: 5rem 0 0 0;
+        padding: 0 0 0 0;
     }
 `;
 
