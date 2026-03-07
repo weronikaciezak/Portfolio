@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Switch} from "./Switch.tsx";
 
 export const Navbar = () => {
     return(
@@ -11,6 +12,7 @@ export const Navbar = () => {
             <Container gap={'0.5rem'}>
                 <Dot></Dot>
                 <Font>Open to work</Font>
+                <Switch/>
             </Container>
         </Wrapper>
     )
@@ -32,11 +34,13 @@ const Container = styled.div<{gap?: string}>`
 const SmallTitle = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 0.80rem;
+    cursor: pointer;
 `;
 
 const Font = styled.div`
     font-family: "Young Serif", sans-serif;
     font-size: 0.80rem;
+    padding: 0 0.5rem 0 0;
 `;
 
 const Dot = styled.div`
