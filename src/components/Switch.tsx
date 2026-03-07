@@ -21,11 +21,11 @@ export const Switch = () => {
 }
 
 const Box = styled.div<BoxProps>`
-    width: 48px;
-    min-width: 48px;
+    width: 44px;
+    min-width: 44px;
     height: 27px;
-    border-radius: 30px;
-    padding: 0 4px 0 3px;
+    border-radius: 40px;
+    padding: 0 5px 0 5px;
     display: flex;
     align-items: center;
     background-color: ${ColorPalette.primary.hex};
@@ -35,11 +35,11 @@ const Box = styled.div<BoxProps>`
 
 
 const Dot= styled.div<BoxProps>`
-    width: 21px;
-    height: 21px;
+    width: 20px;
+    height: 20px;
     background: ${ColorPalette.background.hex};
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
-    transform: ${props => props.$isOn ? 'translateX(28px)' : 'translateX(0)'};
+    transform: ${props => props.$isOn ? 'translateX(24px)' : 'translateX(0)'};
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 `;
