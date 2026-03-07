@@ -14,51 +14,51 @@ export const SkillsSection = () => {
     return(
         <Container>
             <Tile>
-                <SiCplusplus color='var(--icon-color)' size={50} />
+                <SiCplusplus color='var(--icon-color)' size={'3rem'} />
                 <Text>C++</Text>
             </Tile>
             <Tile>
-                <SiPython color='var(--icon-color)' size={50} />
+                <SiPython color='var(--icon-color)' size={'3rem'} />
                 <Text>Python</Text>
             </Tile>
             <Tile>
-                <SiKotlin color='var(--icon-color)' size={50} />
+                <SiKotlin color='var(--icon-color)' size={'3rem'} />
                 <Text>Kotlin</Text>
             </Tile>
             <Tile>
-                <SiReact color='var(--icon-color)' size={50} />
+                <SiReact color='var(--icon-color)' size={'3rem'} />
                 <Text>React</Text>
             </Tile>
             <Tile>
-                <SiDocker color='var(--icon-color)' size={50} />
+                <SiDocker color='var(--icon-color)' size={'3rem'} />
                 <Text>Docker</Text>
             </Tile>
             <Tile>
-                <SiJenkins color='var(--icon-color)' size={50} />
+                <SiJenkins color='var(--icon-color)' size={'3rem'} />
                 <Text>Jenkins</Text>
             </Tile>
             <Tile>
-                <SiSpringboot color='var(--icon-color)' size={50} />
+                <SiSpringboot color='var(--icon-color)' size={'3rem'} />
                 <Text>Spring Boot</Text>
             </Tile>
             <Tile>
-                <SiDjango color='var(--icon-color)' size={50} />
+                <SiDjango color='var(--icon-color)' size={'3rem'} />
                 <Text>Django</Text>
             </Tile>
             <Tile>
-                <SiPostgresql color='var(--icon-color)' size={50} />
+                <SiPostgresql color='var(--icon-color)' size={'3rem'} />
                 <Text>PostgresSQL</Text>
             </Tile>
             <Tile>
-                <SiFirebase color='var(--icon-color)' size={50} />
+                <SiFirebase color='var(--icon-color)' size={'3rem'} />
                 <Text>Firebase</Text>
             </Tile>
             <Tile>
-                <SiCss color='var(--icon-color)' size={50} />
+                <SiCss color='var(--icon-color)' size={'3rem'} />
                 <Text>CSS</Text>
             </Tile>
             <Tile>
-                <SiFigma color='var(--icon-color)' size={50} />
+                <SiFigma color='var(--icon-color)' size={'3rem'} />
                 <Text>Figma</Text>
             </Tile>
         </Container>
@@ -66,17 +66,16 @@ export const SkillsSection = () => {
 }
 
 const Tile = styled.div`
-    width: 100px;
-    height: 100px;
-    padding: 3px;
+    width: 6.25rem;
+    height: 6.25rem;
+    padding: 0.1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    border-radius: 8px;
-    gap: 5px;
+    border-radius: 0.5rem;
+    gap: 0.3rem;
     background-color: var(--primary-color);
-    //box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     
     transition: transform 0.3s ease, background-color 0.3s ease;
     &:hover {
@@ -91,10 +90,10 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.25rem;
 `;
 
 const Text = styled.div`
     color: var(--icon-color);
-    margin-bottom: 5px;
+    margin-bottom: 0.3rem;
 `;

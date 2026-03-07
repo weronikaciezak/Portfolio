@@ -30,7 +30,7 @@ const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 200vh;
-    max-width: 800px;
+    max-width: clamp(47rem, 47vw, 48rem);
     width: 100%;
     margin: 0 auto;
 `;

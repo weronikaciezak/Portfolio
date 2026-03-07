@@ -61,12 +61,12 @@ const Title = styled.div`
     color: var(--secondary-color);
     font-family: "Young Serif", sans-serif;
     font-size: 1.5rem;
-    padding: 12vh 0 0 0;
+    padding: 9rem 0 0 0;
 `;
 
 const Name = styled.div`
     font-family: "Unbounded", sans-serif;
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     padding: 0 0 1rem 0;
 `;
 
