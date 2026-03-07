@@ -34,7 +34,7 @@ const LayoutContainer = styled.div`
     //width: min(40%, 1200px);
     max-width: max(50%, 60rem);
     margin-inline: auto;
-    padding-inline: 24px;
+    //padding-inline: 24px;
     //width: 100%;
     margin: 0 auto;
     

@@ -62,6 +62,10 @@ const Title = styled.div`
     font-family: "Young Serif", sans-serif;
     font-size: 1.5rem;
     padding: 10rem 0 0 0;
+
+    @media (max-width: 768px) {
+        padding: 5rem 0 0 0;
+    }
 `;
 
 const Name = styled.div`
