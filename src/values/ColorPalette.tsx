@@ -7,8 +7,8 @@ const ColorPalette: { [key in 'background' | 'footer' | 'header' | 'text' | 'pri
     footer: { hex: "#1C1E21" },
     header: { hex: "#7D7D7D" },
     text: { hex: "#000000" },
-    primary: { hex: "#C2C2C2" },
-    secondary: { hex: "#FFFFFF" },
+    primary: { hex: "#a2a2a2" },
+    secondary: { hex: "#c2c2c2" },
     icons: { hex: "#FFFFFF" },
 };
 

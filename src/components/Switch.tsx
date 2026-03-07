@@ -23,9 +23,9 @@ export const Switch = () => {
 const Box = styled.div<BoxProps>`
     width: 44px;
     min-width: 44px;
-    height: 27px;
+    height: 26px;
     border-radius: 40px;
-    padding: 0 5px 0 5px;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     background-color: ${ColorPalette.primary.hex};

@@ -16,35 +16,35 @@ export const SkillsSection = () => {
         <Container>
             <Tile>
                 <SiCplusplus color={ColorPalette.icons.hex} size={50} />
-                <div>C++</div>
+                <Text>C++</Text>
             </Tile>
             <Tile>
                 <SiPython color={ColorPalette.icons.hex} size={50} />
-                <div>Python</div>
+                <Text>Python</Text>
             </Tile>
             <Tile>
                 <SiReact color={ColorPalette.icons.hex} size={50} />
-                <div>React</div>
+                <Text>React</Text>
             </Tile>
             <Tile>
                 <SiDocker color={ColorPalette.icons.hex} size={50} />
-                <div>Docker</div>
+                <Text>Docker</Text>
             </Tile>
             <Tile>
                 <SiJenkins color={ColorPalette.icons.hex} size={50} />
-                <div>Jenkins</div>
+                <Text>Jenkins</Text>
             </Tile>
             <Tile>
                 <SiSpringboot color={ColorPalette.icons.hex} size={50} />
-                <div>Spring Boot</div>
+                <Text>Spring Boot</Text>
             </Tile>
             <Tile>
                 <SiPostgresql color={ColorPalette.icons.hex} size={50} />
-                <div>PostgresSQL</div>
+                <Text>PostgresSQL</Text>
             </Tile>
             <Tile>
                 <SiDjango color={ColorPalette.icons.hex} size={50} />
-                <div>Django</div>
+                <Text>Django</Text>
             </Tile>
         </Container>
     )
@@ -54,14 +54,12 @@ const Tile = styled.div`
     width: 100px;
     height: 100px;
     padding: 3px;
-    
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 5px;
-    
-    background-color: #C2C2C2;
+    background-color: ${ColorPalette.primary.hex};
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 `;
@@ -71,5 +69,13 @@ const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
+    :hover {
+        background-color: ${ColorPalette.header.hex};
+    }
 `;
 
+const Text = styled.div`
+    color: ${ColorPalette.icons.hex};
+    margin-bottom: 5px;
+`;

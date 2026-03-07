@@ -38,7 +38,7 @@ const SmallTitle = styled.div`
 `;
 
 const Font = styled.div`
-    font-family: "Young Serif", sans-serif;
+    //font-family: "Young Serif", sans-serif;
     font-size: 0.80rem;
     padding: 0 0.5rem 0 0;
 `;
