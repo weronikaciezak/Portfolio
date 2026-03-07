@@ -1,7 +1,6 @@
 import {Layout} from "../layouts/Layout.tsx";
 import {SkillsSection} from "../components/SkillsSection.tsx";
 import styled from "styled-components";
-import ColorPalette from "../values/ColorPalette.tsx";
 
 export const MainPage = () => {
 
@@ -10,7 +9,7 @@ export const MainPage = () => {
 
             <Title>SOFTWARE DEVELOPER</Title>
             <Name>hi I'm Weronika Ciężak 👋</Name>
-            <div>I am a computer science student from Poland 🇵🇱</div>
+            <div>I am a 4th year Computer Science student from Poland.</div>
             <div>I create full-stack applications. </div>
 
             <H2>Tools I worked with</H2>
@@ -22,7 +21,7 @@ export const MainPage = () => {
 }
 
 const Title = styled.div`
-    color: ${ColorPalette.header.hex};
+    color: var(--secondary-color);
     font-family: "Unbounded", sans-serif;
     //font-weight: bold;
     font-size: 1.2rem;
@@ -30,7 +29,6 @@ const Title = styled.div`
 `;
 
 const Name = styled.div`
-    color: ${ColorPalette.text.hex};
     font-family: "Unbounded", sans-serif;
     font-size: 2.3rem;
     padding: 0 0 0.8rem 0;

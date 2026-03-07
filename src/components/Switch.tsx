@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import styled from "styled-components";
-import ColorPalette from "../values/ColorPalette.tsx";
 
 interface BoxProps {
     $isOn: boolean;
 }
 
 export const Switch = () => {
-    const [isOn, setIsOn] = useState(false);
+    const [isDark, setIsDark] = useState(false);
+
+    useEffect(() => {
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    }, [isDark]);
 
     const handleToggle = () => {
-        setIsOn(!isOn);
+        setIsDark(!isDark);
     };
 
     return(
-        <Box $isOn={isOn} onClick={handleToggle}>
-            <Dot $isOn={isOn} />
+        <Box $isOn={isDark} onClick={handleToggle}>
+            <Dot $isOn={isDark} />
         </Box>
     )
 }
@@ -28,7 +35,7 @@ const Box = styled.div<BoxProps>`
     padding: 0 5px;
     display: flex;
     align-items: center;
-    background-color: ${ColorPalette.primary.hex};
+    background-color: var(--primary-color);
     box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 `;
@@ -37,7 +44,7 @@ const Box = styled.div<BoxProps>`
 const Dot= styled.div<BoxProps>`
     width: 20px;
     height: 20px;
-    background: ${ColorPalette.background.hex};
+    background: var(--bg-color);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
     transform: ${props => props.$isOn ? 'translateX(24px)' : 'translateX(0)'};

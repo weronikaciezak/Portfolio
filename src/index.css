@@ -14,6 +14,27 @@ body {
     --margin-l: 1.25rem;
     --margin-xl: 1.75rem;
     --margin-xxl: 2.5rem;
+
+    --bg-color: #EEEEEE;
+    --bg2-color: #a2a2a2;
+
+    --text-color: #000000;
+    --primary-color: #a2a2a2;
+    --secondary-color: #7D7D7D;
+    --icon-color: #FFFFFF;
+    --accent-color: #7D7D7D;
+}
+
+
+[data-theme="dark"] {
+    --bg-color: #03010E;
+    --bg2-color: #363136;
+
+    --text-color: #DFDEF9;
+    --primary-color: #665c84;
+    --secondary-color:#DFDEF9;
+    --icon-color: #DFDEF9;
+    --accent-color: #2c2c4e;
 }
 
 :root, #root, body {
