@@ -39,7 +39,7 @@ const Container = styled.div<{gap?: string}>`
 
 const SmallTitle = styled.div`
     font-family: "Unbounded", sans-serif;
-    font-size: 0.80rem;
+    font-size: 0.90rem;
     cursor: pointer;
 `;
 

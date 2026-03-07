@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
     SiCplusplus, SiCss, SiDjango,
-    SiDocker, SiFirebase,
+    SiDocker, SiFigma, SiFirebase,
     SiJenkins, SiKotlin,
     SiPostgresql,
     SiPython,
@@ -42,12 +42,12 @@ export const SkillsSection = () => {
                 <Text>Spring Boot</Text>
             </Tile>
             <Tile>
-                <SiPostgresql color='var(--icon-color)' size={50} />
-                <Text>PostgresSQL</Text>
-            </Tile>
-            <Tile>
                 <SiDjango color='var(--icon-color)' size={50} />
                 <Text>Django</Text>
+            </Tile>
+            <Tile>
+                <SiPostgresql color='var(--icon-color)' size={50} />
+                <Text>PostgresSQL</Text>
             </Tile>
             <Tile>
                 <SiFirebase color='var(--icon-color)' size={50} />
@@ -57,8 +57,10 @@ export const SkillsSection = () => {
                 <SiCss color='var(--icon-color)' size={50} />
                 <Text>CSS</Text>
             </Tile>
-
-
+            <Tile>
+                <SiFigma color='var(--icon-color)' size={50} />
+                <Text>Figma</Text>
+            </Tile>
         </Container>
     )
 }
@@ -73,8 +75,15 @@ const Tile = styled.div`
     align-items: center;
     gap: 5px;
     background-color: var(--primary-color);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    &:hover {
+        background-color: var(--accent-color);
+        transform: scale(1.1);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0);
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    }
 `;
 
 
@@ -83,10 +92,6 @@ const Container = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-
-    :hover {
-        background-color: var(--accent-color);
-    }
 `;
 
 const Text = styled.div`

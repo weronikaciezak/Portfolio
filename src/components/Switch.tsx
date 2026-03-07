@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useTheme } from './ThemeContext';
 import styled from "styled-components";
 
 interface BoxProps {
@@ -6,22 +6,10 @@ interface BoxProps {
 }
 
 export const Switch = () => {
-    const [isDark, setIsDark] = useState(false);
-
-    useEffect(() => {
-        if (isDark) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
-    }, [isDark]);
-
-    const handleToggle = () => {
-        setIsDark(!isDark);
-    };
+    const { isDark, toggleTheme } = useTheme();
 
     return(
-        <Box $isOn={isDark} onClick={handleToggle}>
+        <Box $isOn={isDark} onClick={toggleTheme}>
             <Dot $isOn={isDark} />
         </Box>
     )

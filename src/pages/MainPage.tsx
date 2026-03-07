@@ -1,24 +1,38 @@
 import {Layout} from "../layouts/Layout.tsx";
 import {SkillsSection} from "../components/SkillsSection.tsx";
 import styled from "styled-components";
+import {useState} from "react";
 
 export const MainPage = () => {
+
+    const goToGithub = () => {
+        window.open('https://github.com/weronikaciezak', '_blank');
+    };
+    const goToLinkedin = () => {
+        window.open('https://www.linkedin.com/in/weronika-ci%C4%99%C5%BCak-1554b8359/', '_blank');
+    };
+
+    const [isCopied, setIsCopied] = useState(false);
+    const copyEmail = () => {
+        navigator.clipboard.writeText("weronikaciezak@wp.pl");
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 1000);
+    }
 
     return (
         <Layout title="Weronika Ciężak | Portfolio">
 
-            {/*<Title>SOFTWARE DEVELOPER</Title>*/}
             <Title>software developer</Title>
-            <Name>hi I'm Weronika Ciężak 👋</Name>
+            <Name>Hi I'm Weronika Ciężak 👋</Name>
             <div>I am a 4th year Computer Science student from Poland.</div>
             <div>I create full-stack applications.</div>
 
             <Container>
-                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
-                    <i className="fa-brands fa-github fa-xl"></i>
-                </a>
-                <div><i className="fa-brands fa-linkedin fa-xl"></i></div>
-                <div><i className="fa-solid fa-envelope fa-xl"></i></div>
+                <Social title="Open GitHub" onClick={goToGithub}><i className="fa-brands fa-github fa-xl"></i></Social>
+                <Social title="Open LinkedIn" onClick={goToLinkedin}><i className="fa-brands fa-linkedin fa-xl"></i></Social>
+                <Social title="Copy email" onClick={copyEmail}>
+                    <i className={`fa-solid fa-xl ${isCopied ? 'fa-envelope-circle-check' : 'fa-envelope'}`}></i>
+                </Social>
             </Container>
 
             <H2>Tools I worked with</H2>
@@ -31,23 +45,20 @@ export const MainPage = () => {
 
 const Container = styled.div`
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     padding: 1.5rem 0 0 0;
-
-    :hover {
-        //background-color: #7D7D7D;
-    }
 `;
 
-// const Link = styled.a`
-//     height: 30px;
-//
-// `;
+const Social = styled.div`
+    cursor: pointer;
+    :hover && :active {
+        color: var(--secondary-color);
+    }
+`;
 
 const Title = styled.div`
     color: var(--secondary-color);
     font-family: "Young Serif", sans-serif;
-    //font-weight: bold;
     font-size: 1.5rem;
     padding: 12vh 0 0 0;
 `;
