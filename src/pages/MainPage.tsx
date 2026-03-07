@@ -23,6 +23,7 @@ export const MainPage = () => {
         <Layout title="Weronika Ciężak | Portfolio">
 
             <Title>software developer</Title>
+            <Title>software developer</Title>
             <Name>Hi I'm Weronika Ciężak 👋</Name>
             <div>I am a 4th year Computer Science student from Poland.</div>
             <div>I create full-stack applications.</div>
