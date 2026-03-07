@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import {Switch} from "./Switch.tsx";
+import {useNavigate} from "react-router-dom";
 
 export const Navbar = () => {
+    const navigate = useNavigate();
+    const redirectHome = () => navigate("/");
+    const redirectResume = () => navigate("/resume");
+    const redirectContact = () => navigate("/contact");
+
     return(
         <Wrapper>
             <Container>
-                <SmallTitle>Home</SmallTitle>
-                <SmallTitle>Resume</SmallTitle>
-                <SmallTitle>Contact</SmallTitle>
+                <SmallTitle onClick={redirectHome}>Home</SmallTitle>
+                <SmallTitle onClick={redirectResume}>Resume</SmallTitle>
+                <SmallTitle onClick={redirectContact}>Contact</SmallTitle>
             </Container>
             <Container gap={'0.5rem'}>
                 <Dot></Dot>
@@ -22,7 +28,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
 `;
 
 const Container = styled.div<{gap?: string}>`
@@ -38,7 +44,7 @@ const SmallTitle = styled.div`
 `;
 
 const Font = styled.div`
-    //font-family: "Young Serif", sans-serif;
+    font-family: "Young Serif", sans-serif;
     font-size: 0.80rem;
     padding: 0 0.5rem 0 0;
 `;
