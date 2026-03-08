@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem 1rem;
+    padding: 3rem 0;
 `;
 
 const Container = styled.div<{gap?: string}>`

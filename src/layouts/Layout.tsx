@@ -33,10 +33,10 @@ const LayoutContainer = styled.div`
     max-width: clamp(47rem, 47vw, 48rem);
     width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
 `;
 
 const MainContent = styled.main`
-    padding: 0 1rem;
     flex-grow: 1;
     flex-direction: column;
 `;

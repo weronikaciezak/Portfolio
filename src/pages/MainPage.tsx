@@ -10,10 +10,10 @@ export const MainPage = () => {
             <div style={{ display: "flex", justifyContent: "flex-start", paddingTop: "9rem" }}>
                 <Typewriter/>
             </div>
-            <Name>hi I'm Weronika 👋</Name>
+            <H1>hi I'm Weronika 👋</H1>
             <div>I am a 4th year Computer Science student from Poland.</div>
             <div>I create full-stack applications.</div>
-            <Socials />
+            <Socials/>
 
             <H2>Tools I worked with</H2>
             <SkillsSection/>
@@ -23,7 +23,7 @@ export const MainPage = () => {
     )
 }
 
-const Name = styled.div`
+const H1 = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: clamp(1.9rem, 3vw, 2.5rem);
     padding: 0 0 1rem 0;
