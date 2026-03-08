@@ -45,5 +45,5 @@ const H1 = styled.div`
 const H2 = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 1.3rem;
-    padding: 9rem 0 1.3rem 0;
+    padding: 11rem 0 1.3rem 0;
 `;
