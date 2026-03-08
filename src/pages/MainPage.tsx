@@ -8,13 +8,13 @@ import {Projects} from "../components/Projects.tsx";
 export const MainPage = () => {
     return (
         <Layout title="Weronika Ciężak | Portfolio">
-            <div style={{ display: "flex", justifyContent: "flex-start", paddingTop: "9rem" }}>
+            <Container>
                 <Typewriter/>
-            </div>
-            <H1>hi I'm Weronika 👋</H1>
-            <div>I am a 4th year Computer Science student from Poland.</div>
-            <div>I create full-stack applications.</div>
-            <Socials/>
+                <H1>hi I'm Weronika 👋</H1>
+                <div>I am a 4th year Computer Science student from Poland.</div>
+                <div>I create full-stack applications.</div>
+                <Socials/>
+            </Container>
 
             <H2>Tools I worked with</H2>
             <Skills/>
@@ -24,6 +24,17 @@ export const MainPage = () => {
         </Layout>
     )
 }
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 9rem;
+    
+    @media (max-width: 600px) {
+        padding: 4rem 0 0 5rem;
+    }
+`;
 
 const H1 = styled.div`
     font-family: "Unbounded", sans-serif;
