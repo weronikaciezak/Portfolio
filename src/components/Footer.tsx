@@ -9,5 +9,5 @@ export const Footer = () => {
 const Container = styled.div`
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
+    padding: 15rem 0.5rem 1rem 0.5rem;
 `;

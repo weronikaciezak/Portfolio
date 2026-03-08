@@ -34,6 +34,7 @@ body {
     --secondary-color: #494848; /*title color*/
     --icon-color: #FFFFFF;
     --accent-color: #7D7D7D;
+    --opacity: 0.3;
 }
 
 
@@ -45,11 +46,12 @@ body {
     --secondary-color:#DFDEF9; /*title color*/
     --icon-color: #DFDEF9;
     --accent-color: #8375ab;
+    --opacity: 0.06;
 }
 
 :root, #root, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*overscroll-behavior-y: none;*/
+    overscroll-behavior-y: none; /* for overscrolling on mobile */
 }
