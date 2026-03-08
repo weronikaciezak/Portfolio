@@ -57,10 +57,6 @@ const Tile = styled.div`
         transform: scale(1.1);
         filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
     }
-
-    @media (max-width: 600px) {
-        min-width: 5rem;
-    }
 `;
 
 const Container = styled.div`
@@ -69,9 +65,18 @@ const Container = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
     justify-content: center;
     gap: 1rem;
+
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+    }
 `;
 
 const Text = styled.div`
     color: var(--icon-color);
     margin-bottom: -0.3rem;
+    text-align: center;
+    
+    @media (max-width: 600px) {
+        font-size: 0.9rem;
+    }
 `;

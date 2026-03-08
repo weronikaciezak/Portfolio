@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 3rem 0;
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
         padding: 2rem 0;
     }
 `;
