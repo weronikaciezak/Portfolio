@@ -38,10 +38,10 @@ export const Skills = () => {
 }
 
 const Tile = styled.div`
-    height: 5.5rem;
+    height: 6rem;
     width: auto;
-    min-height: 5.5rem;
-    min-width: 5.5rem;
+    min-height: 6rem;
+    min-width: 6rem;
     //width: clamp(6rem, auto, 6.25rem);
     
     padding: 0.1rem;
@@ -64,7 +64,7 @@ const Tile = styled.div`
 const Container = styled.div`
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
     justify-content: center;
     gap: 1rem;
 `;
