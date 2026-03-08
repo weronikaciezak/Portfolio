@@ -2,6 +2,7 @@ import {Layout} from "../layouts/Layout.tsx";
 import {SkillsSection} from "../components/SkillsSection.tsx";
 import styled from "styled-components";
 import {useState} from "react";
+import {Typewriter} from "../components/Typrewriter.tsx";
 
 export const MainPage = () => {
 
@@ -22,8 +23,10 @@ export const MainPage = () => {
     return (
         <Layout title="Weronika Ciężak | Portfolio">
 
-            <Title>software developer</Title>
-            <Name>Hi I'm Weronika Ciężak 👋</Name>
+            <div style={{ display: "flex", justifyContent: "flex-start", paddingTop: "9rem" }}>
+                <Typewriter/>
+            </div>
+            <Name>hi I'm Weronika 👋</Name>
             <div>I am a 4th year Computer Science student from Poland.</div>
             <div>I create full-stack applications.</div>
 
@@ -55,13 +58,6 @@ const Social = styled.div`
     :hover {
         color: var(--text-color);
     }
-`;
-
-const Title = styled.div`
-    color: var(--secondary-color);
-    font-family: "Young Serif", sans-serif;
-    font-size: 1.5rem;
-    padding: 10rem 0 0 0;
 `;
 
 const Name = styled.div`
