@@ -10,36 +10,49 @@ export const Navbar = () => {
 
     return(
         <Wrapper>
-            <Container>
+            <Container1>
                 <SmallTitle onClick={redirectHome}>Home</SmallTitle>
                 <SmallTitle onClick={redirectResume}>Resume</SmallTitle>
                 <SmallTitle onClick={redirectContact}>Contact</SmallTitle>
-            </Container>
-            <Container gap={'0.5rem'}>
+            </Container1>
+            <Container2>
                 <Dot></Dot>
                 <Font>Open to work</Font>
                 <Switch/>
-            </Container>
+            </Container2>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 2rem 0;
+        align-items: flex-start;
     }
 `;
 
-const Container = styled.div<{gap?: string}>`
+const Container1 = styled.div`
+    height: 100%;
     display: flex;
     align-items: center;
-    gap: ${props => props.gap || '3.5rem'};
+    //gap: 3.5rem;
+    gap: clamp(0.5rem, 3vw, 3.5rem);
+    @media (max-width: 600px) {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+`;
+
+const Container2 = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 `;
 
 const SmallTitle = styled.div`
