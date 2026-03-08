@@ -29,10 +29,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 9rem;
+    padding: 9rem 0 0 0;
     
     @media (max-width: 600px) {
-        padding: 4rem 0 0 5rem;
+        padding: 4rem 0 5rem 0;
     }
 `;
 
