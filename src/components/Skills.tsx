@@ -41,13 +41,11 @@ const Tile = styled.div`
     height: 6rem;
     width: auto;
     min-height: 6rem;
-    min-width: 6rem;
-    //width: clamp(6rem, auto, 6.25rem);
-    
+
     padding: 0.1rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     border-radius: 0.5rem;
     gap: 0.3rem;
@@ -58,6 +56,10 @@ const Tile = styled.div`
         background-color: var(--accent-color);
         transform: scale(1.1);
         filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    @media (max-width: 600px) {
+        min-width: 5rem;
     }
 `;
 
@@ -71,5 +73,5 @@ const Container = styled.div`
 
 const Text = styled.div`
     color: var(--icon-color);
-    margin-bottom: 0.3rem;
+    margin-bottom: -0.3rem;
 `;

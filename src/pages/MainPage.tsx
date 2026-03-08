@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import {Layout} from "../layouts/Layout.tsx";
 import {Skills} from "../components/Skills.tsx";
 import {Typewriter} from "../components/Typrewriter.tsx";
 import {Socials} from "../components/Socials.tsx";
 import {Projects} from "../components/Projects.tsx";
+import styled from "styled-components";
 
 export const MainPage = () => {
     return (
@@ -45,7 +45,5 @@ const H1 = styled.div`
 const H2 = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 1.3rem;
-    padding: 7rem 0 1.3rem 0;
+    padding: 9rem 0 1.3rem 0;
 `;
-
-

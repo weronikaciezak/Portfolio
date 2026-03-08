@@ -30,6 +30,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 3rem 0;
+
+    @media (max-width: 600px) {
+        padding: 2rem 0;
+    }
 `;
 
 const Container = styled.div<{gap?: string}>`
