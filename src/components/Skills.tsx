@@ -65,7 +65,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
     justify-content: center;
-    gap: 1.25rem;
+    gap: 1rem;
 `;
 
 const Text = styled.div`

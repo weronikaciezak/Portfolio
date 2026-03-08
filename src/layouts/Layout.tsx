@@ -36,13 +36,6 @@ const LayoutContainer = styled.div`
     padding: 0 1.2rem;
     max-width: 870px;
     margin: 0 auto;
-    
-    overflow-x: scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 `;
 
 const MainContent = styled.main`
