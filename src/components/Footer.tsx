@@ -1,16 +1,5 @@
-import styled from "styled-components";
-
 export const Footer = () => {
     return(
-        <Container>
-            <div>Designed and coded by Weronika Ciężak © 2026</div>
-        </Container>
+        <div style={{padding: "0 0 0.5rem 0"}}>Designed and coded by Weronika Ciężak © 2026</div>
     )
 }
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-`;

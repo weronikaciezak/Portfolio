@@ -30,10 +30,19 @@ const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 200vh;
-    max-width: clamp(47rem, 47vw, 48rem);
+
     width: 100%;
+    box-sizing: border-box;
+    padding: 0 1.2rem;
+    max-width: 870px;
     margin: 0 auto;
-    padding: 0 1rem;
+    
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 `;
 
 const MainContent = styled.main`
