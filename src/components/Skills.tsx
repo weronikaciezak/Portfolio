@@ -39,9 +39,10 @@ export const Skills = () => {
 
 const Tile = styled.div`
     height: 6.25rem;
-    width: auto;
+    //width: auto;
     min-height: 6.25rem;
     min-width: 6.25rem;
+    width: clamp(6rem, auto, 6.25rem);
     
     padding: 0.1rem;
     display: flex;

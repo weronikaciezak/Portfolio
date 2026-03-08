@@ -34,7 +34,7 @@ const LayoutContainer = styled.div`
     width: 100%;
     box-sizing: border-box;
     padding: 0 1.2rem;
-    max-width: 870px;
+    max-width: 50rem;
     margin: 0 auto;
 `;
 
