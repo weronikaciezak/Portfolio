@@ -1,8 +1,9 @@
-import {Layout} from "../layouts/Layout.tsx";
-import {SkillsSection} from "../components/SkillsSection.tsx";
 import styled from "styled-components";
+import {Layout} from "../layouts/Layout.tsx";
+import {Skills} from "../components/Skills.tsx";
 import {Typewriter} from "../components/Typrewriter.tsx";
 import {Socials} from "../components/Socials.tsx";
+import {Projects} from "../components/Projects.tsx";
 
 export const MainPage = () => {
     return (
@@ -16,9 +17,10 @@ export const MainPage = () => {
             <Socials/>
 
             <H2>Tools I worked with</H2>
-            <SkillsSection/>
+            <Skills/>
 
             <H2>Projects</H2>
+            <Projects/>
         </Layout>
     )
 }
