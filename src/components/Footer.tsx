@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Footer = () => {
     return(
-        <Container>Designed and coded by Weronika Ciężak © 2026</Container>
+        <Container>Designed and developed by Weronika Ciężak © 2026</Container>
     )
 }
 
