@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import simpletodo from '../assets/simpletodo.png';
+import bookstore from '../assets/bookstore.png';
 
 const projects = [
     {
@@ -8,7 +9,7 @@ const projects = [
         description: "A full-stack web application for bookstore management built with Spring Boot, Thymeleaf, Hibernate, and PostgreSQL.",
         badges: ["Java", "Spring Boot", "Hibernate", "Thymeleaf", "PostgreSQL"],
         repoName: "Bookstore",
-        image: simpletodo
+        image: bookstore
     },
     {
         id: 2,
