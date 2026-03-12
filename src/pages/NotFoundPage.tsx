@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useEffect} from "react";
+import {Layout} from "../layouts/Layout.tsx";
 
 export const NotFoundPage = () => {
     useEffect(() => {
@@ -7,9 +8,9 @@ export const NotFoundPage = () => {
     }, []);
 
     return(
-        <Container title="Page Not Found">
-            <div>404 Page Not Found</div>
-        </Container>
+        <Layout title="Page Not Found">
+            <Container>404 Page Not Found</Container>
+        </Layout>
     )
 }
 
