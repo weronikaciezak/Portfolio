@@ -34,9 +34,8 @@ body {
     --secondary-color: #494848; /*title color*/
     --icon-color: #FFFFFF;
     --accent-color: #7D7D7D;
-    --opacity: 0.3;
+    --opacity: 0.2;
 }
-
 
 [data-theme="dark"] {
     --bg-color: #03010E;
@@ -46,7 +45,7 @@ body {
     --secondary-color:#DFDEF9; /*title color*/
     --icon-color: #DFDEF9;
     --accent-color: #8375ab;
-    --opacity: 0.06;
+    --opacity: 0.02;
 }
 
 :root, #root, body {
