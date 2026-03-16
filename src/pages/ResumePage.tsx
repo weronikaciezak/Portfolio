@@ -1,49 +1,45 @@
 import {Layout} from "../layouts/Layout.tsx";
-import {useState} from "react";
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import resumePDF from "../assets/Resume.pdf";
+import styled from "styled-components";
 
-// Ustaw worker z lokalnego folderu public
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 export const ResumePage = () => {
-    const [numPages, setNumPages] = useState<number | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
 
     return(
         <Layout title="Resume | Weronika Ciężak">
-            <div style={{ padding: '2rem', textAlign: 'center' }}>
-                {loading && <p>Ładowanie PDF...</p>}
-                {error && (
-                    <div style={{color: 'red', padding: '1rem', backgroundColor: '#ffe6e6', borderRadius: '4px'}}>
-                        <p>⚠️ Błąd: {error}</p>
-                        <p><a href={resumePDF} target="_blank">Pobierz PDF bezpośrednio</a></p>
-                    </div>
-                )}
-                {!error && (
-                    <Document
-                        file={resumePDF}
-                        onLoadSuccess={({ numPages }) => {
-                            console.log('PDF załadowany, strony:', numPages);
-                            setNumPages(numPages);
-                            setError(null);
-                            setLoading(false);
-                        }}
-                        onLoadError={(error) => {
-                            console.error('PDF Error:', error);
-                            setError(`Nie można załadować PDF: ${error.message}`);
-                            setLoading(false);
-                        }}
-                        loading={<p>Przetwarzanie pliku...</p>}
-                    >
-                        <Page pageNumber={1} />
-                    </Document>
-                )}
-                {numPages && <p>Strona 1 z {numPages}</p>}
-            </div>
+            <Container>
+                <LangButton>EN / PL</LangButton>
+                <DownloadButton href={resumePDF} download="weronika_ciezak_resume.pdf">
+                    Download
+                </DownloadButton>
+            </Container>
+
+            <Document file={resumePDF}>
+                <Page pageNumber={1} />
+            </Document>
         </Layout>
     )
 }
+
+const Container = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+`;
+
+const LangButton = styled.button`
+    background: var(--primary-color);
+`;
+
+const DownloadButton = styled.a`
+    background: var(--primary-color);
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+`;

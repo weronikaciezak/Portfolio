@@ -56,21 +56,21 @@ body {
     overscroll-behavior-y: none; /* for overscrolling on mobile */
 }
 
-/* react-pdf styles */
-.react-pdf {
-    display: flex;
-    justify-content: center;
-    margin: var(--margin-xl) 0;
-}
+/*!* react-pdf styles *!*/
+/*.react-pdf {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    margin: var(--margin-xl) 0;*/
+/*}*/
 
-.react-pdf__Document {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/*.react-pdf__Document {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
 
-.react-pdf__Page {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: var(--margin-m);
-    max-width: 90vw;
-}
+/*.react-pdf__Page {*/
+/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+/*    margin: var(--margin-m);*/
+/*    max-width: 90vw;*/
+/*}*/
