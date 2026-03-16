@@ -1,6 +1,10 @@
 html {
-    font-size: clamp(16px, 0.85vw, 40px);
+    font-size: clamp(20px, 0.85vw, 40px);
 }
+
+/*html {*/
+/*    font-size: 20px;*/
+/*}*/
 
 body {
     padding: 0;
@@ -34,7 +38,8 @@ body {
     --secondary-color: #494848; /*title color*/
     --icon-color: #FFFFFF;
     --accent-color: #7D7D7D;
-    --opacity: 0.2;
+    /*--opacity: 0.3;*/
+    --opacity: 0;
 }
 
 [data-theme="dark"] {
@@ -45,7 +50,8 @@ body {
     --secondary-color:#DFDEF9; /*title color*/
     --icon-color: #DFDEF9;
     --accent-color: #8375ab;
-    --opacity: 0.02;
+    --opacity: 0.06;
+    /*--opacity: 0;*/
 }
 
 :root, #root, body {

@@ -65,6 +65,10 @@ const Font = styled.div`
     font-family: "Young Serif", sans-serif;
     font-size: 0.80rem;
     padding: 0 0.5rem 0 0;
+
+    @media (max-width: 600px) {
+        font-size: 0.70rem;
+    }
 `;
 
 const Dot = styled.div`
