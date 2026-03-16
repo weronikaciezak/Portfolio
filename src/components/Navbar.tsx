@@ -6,14 +6,14 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const redirectHome = () => navigate("/");
     const redirectResume = () => navigate("/resume");
-    const redirectContact = () => navigate("/contact");
+    // const redirectContact = () => navigate("/contact");
 
     return(
         <Wrapper>
             <Container1>
                 <SmallTitle onClick={redirectHome}>Home</SmallTitle>
                 <SmallTitle onClick={redirectResume}>Resume</SmallTitle>
-                <SmallTitle onClick={redirectContact}>Contact</SmallTitle>
+                {/*<SmallTitle onClick={redirectContact}>Contact</SmallTitle>*/}
             </Container1>
             <Container2>
                 <Dot></Dot>
@@ -65,6 +65,10 @@ const Font = styled.div`
     font-family: "Young Serif", sans-serif;
     font-size: 0.80rem;
     padding: 0 0.5rem 0 0;
+
+    @media (max-width: 600px) {
+        font-size: 0.70rem;
+    }
 `;
 
 const Dot = styled.div`
