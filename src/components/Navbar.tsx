@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     padding: 2.5rem 0;
 
     @media (max-width: 600px) {
-        padding: 2rem 0;
+        padding: 1rem 0;
         align-items: flex-start;
     }
 `;
@@ -75,6 +75,6 @@ const Dot = styled.div`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: green;
-    filter: drop-shadow(0px 0px 2px #81ff81);
+    background-color: #60c260;
+    filter: drop-shadow(0px 0px 2px green);
 `;

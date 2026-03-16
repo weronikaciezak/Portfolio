@@ -11,7 +11,7 @@ export const MainPage = () => {
             <Container>
                 <Typewriter/>
                 <H1>hi I'm Weronika 👋</H1>
-                <div>I am a 4th year Computer Science student from Poland.</div>
+                <div>I am a 4th year Computer Science student based in Poland.</div>
                 <div>I create full-stack applications.</div>
                 <Socials/>
             </Container>

@@ -42,7 +42,6 @@ body {
     --opacity: 0;
 }
 
-
 [data-theme="dark"] {
     --bg-color: #03010E;
     --bg2-color: #6A6A88;
