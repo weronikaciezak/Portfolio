@@ -59,6 +59,11 @@ const SmallTitle = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 0.90rem;
     cursor: pointer;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+    
 `;
 
 const Font = styled.div`
@@ -75,6 +80,6 @@ const Dot = styled.div`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: #60c260;
-    filter: drop-shadow(0px 0px 2px green);
+    background-color: green;
+    //filter: drop-shadow(0px 0px 2px green);
 `;

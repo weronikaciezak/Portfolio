@@ -47,7 +47,7 @@ const Dot= styled.div<BoxProps>`
     i {
         font-size: 0.8rem;
         color: var(--primary-color);
-        transition: all 0.3s;
+        transition: color 0.3s ease, transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
         transform: ${props => props.$isOn ? 'rotate(320deg)' : 'rotate(0deg)'};
     }
 `;

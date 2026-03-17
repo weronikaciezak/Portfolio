@@ -48,8 +48,14 @@ export const Socials = () => {
     return(
         <>
             <Container>
-                <Icon title="Open GitHub" onClick={goToGithub}><i className="fa-brands fa-github fa-xl"></i></Icon>
-                <Icon title="Open LinkedIn" onClick={goToLinkedin}><i className="fa-brands fa-linkedin fa-xl"></i></Icon>
+                <Icon title="Open GitHub" onClick={goToGithub}>
+                    <i className="fa-brands fa-github fa-xl"></i>
+                </Icon>
+
+                <Icon title="Open LinkedIn" onClick={goToLinkedin}>
+                    <i className="fa-brands fa-linkedin fa-xl"></i>
+                </Icon>
+
                 <Icon title="Copy email" onClick={copyEmail}>
                     <i className={`fa-solid fa-xl ${isCopied ? 'fa-envelope-circle-check' : 'fa-envelope'}`}></i>
                 </Icon>
@@ -80,11 +86,27 @@ const Toast = styled.div`
     bottom: 2rem;
     transform: translateX(-50%);
     background: var(--primary-color);
-    color: var(--bg-color);
+    color: var(--text-color);
     padding: 0.75rem 1.25rem;
-    border-radius: 999px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    //border-radius: 999px;
+    //box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     font-size: 0.95rem;
+
+    /* 1. Półprzezroczyste tło (np. białe z 20% krycia) */
+    background: rgba(255, 255, 255, 0.2);
+
+    /* 2. Główny efekt rozmycia tła pod elementem */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Niezbędne dla wsparcia przeglądarki Safari */
+
+    /* 3. Subtelne, cienkie obramowanie dodające "krawędź" szkła */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* 4. Lekki cień, żeby oderwać element od tła */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    border-radius: 1rem;
+
 `;
 

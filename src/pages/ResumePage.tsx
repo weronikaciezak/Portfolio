@@ -37,10 +37,11 @@ export const ResumePage = () => {
     return(
         <Layout title="Weronika Ciężak | Resume">
             <Container>
-                <Button onClick={handleLanguageToggle}>{language === "en" ? "PL" : "EN"}</Button>
-                <Button href={resumeFile} download={downloadName}>
-                    <i className="fa-solid fa-download"></i>
-                    <div>Download file</div>
+                <Button onClick={handleLanguageToggle}>
+                    {language === "en" ? "to Polish" : "to English" }
+                </Button>
+                <Button title="Download Resume" href={resumeFile} download={downloadName}>
+                    <i className="fa-solid fa-download fa-lg"></i>
                 </Button>
             </Container>
 
@@ -62,20 +63,22 @@ export const ResumePage = () => {
 const Container = styled.div`
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     gap: 1rem;
-    padding-bottom: 1rem;
+    padding: 0 0.5rem 0.5rem 0;
 `;
 
-
 const Button = styled.a`
-    background: var(--primary-color);
-    color: inherit;
-    text-decoration: none;
-    padding: 0.5rem 1rem 0.5rem 0.7rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    cursor: pointer;
+    user-select: none;
+    text-align: end;
+    font-family: "Young Serif", sans-serif;
+    font-size: 1.01rem;
+    color: var(--primary-color);
+    transition: color 0.1s ease;
+    &:hover {
+        color: var(--text-color);
+    }
 `;
 
 const PdfWrapper = styled.div`

@@ -28,7 +28,7 @@ export const Skills = () => {
     return(
         <Container>
             {skills.map(({ icon: Icon, name }) => (
-                <Tile>
+                <Tile key={name}>
                     <Icon color="var(--icon-color)" size="3rem" />
                     <Text>{name}</Text>
                 </Tile>
