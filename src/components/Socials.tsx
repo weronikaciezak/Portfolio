@@ -88,25 +88,14 @@ const Toast = styled.div`
     background: var(--primary-color);
     color: var(--text-color);
     padding: 0.75rem 1.25rem;
-    //border-radius: 999px;
-    //box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
     z-index: 1000;
     font-size: 0.95rem;
-
-    /* 1. Półprzezroczyste tło (np. białe z 20% krycia) */
     background: rgba(255, 255, 255, 0.2);
-
-    /* 2. Główny efekt rozmycia tła pod elementem */
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Niezbędne dla wsparcia przeglądarki Safari */
-
-    /* 3. Subtelne, cienkie obramowanie dodające "krawędź" szkła */
+    -webkit-backdrop-filter: blur(10px); 
     border: 1px solid rgba(255, 255, 255, 0.3);
-
-    /* 4. Lekki cień, żeby oderwać element od tła */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
     border-radius: 1rem;
-
 `;
 
