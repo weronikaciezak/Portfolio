@@ -37,10 +37,11 @@ export const ResumePage = () => {
     return(
         <Layout title="Weronika Ciężak | Resume">
             <Container>
-                <LangButton onClick={handleLanguageToggle}>{language === "en" ? "PL" : "EN"}</LangButton>
-                <DownloadButton href={resumeFile} download={downloadName}>
-                    Download file
-                </DownloadButton>
+                <Button onClick={handleLanguageToggle}>{language === "en" ? "PL" : "EN"}</Button>
+                <Button href={resumeFile} download={downloadName}>
+                    <i className="fa-solid fa-download"></i>
+                    <div>Download file</div>
+                </Button>
             </Container>
 
             <PdfWrapper ref={wrapperRef}>
@@ -65,17 +66,16 @@ const Container = styled.div`
     padding-bottom: 1rem;
 `;
 
-const LangButton = styled.button`
-    background: var(--primary-color);
-`;
 
-const DownloadButton = styled.a`
+const Button = styled.a`
     background: var(--primary-color);
     color: inherit;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.7rem;
     border-radius: 0.5rem;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 `;
 
 const PdfWrapper = styled.div`

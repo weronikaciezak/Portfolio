@@ -10,7 +10,9 @@ export const Switch = () => {
 
     return(
         <Box $isOn={isDark} onClick={toggleTheme}>
-            <Dot $isOn={isDark} />
+            <Dot $isOn={isDark}>
+                <i className={isDark ? "fa-solid fa-moon" : "fa-solid fa-sun"}></i>
+            </Dot>
         </Box>
     )
 }
@@ -35,6 +37,17 @@ const Dot= styled.div<BoxProps>`
     background: var(--bg-color);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     transform: ${props => props.$isOn ? 'translateX(1.5rem)' : 'translateX(0)'};
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+    i {
+        font-size: 0.8rem;
+        color: var(--primary-color);
+        transition: all 0.3s;
+        transform: ${props => props.$isOn ? 'rotate(320deg)' : 'rotate(0deg)'};
+    }
 `;
