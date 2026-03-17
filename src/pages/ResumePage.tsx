@@ -35,7 +35,7 @@ export const ResumePage = () => {
     };
     
     return(
-        <Layout title="Resume | Weronika Ciężak">
+        <Layout title="Weronika Ciężak | Resume">
             <Container>
                 <LangButton onClick={handleLanguageToggle}>{language === "en" ? "PL" : "EN"}</LangButton>
                 <DownloadButton href={resumeFile} download={downloadName}>

@@ -29,7 +29,7 @@ export const Layout = ({ children, title } : LayoutProps ) => {
 const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
-
+    min-height: 200vh;
     width: 100%;
     box-sizing: border-box;
     padding: 0 1.2rem;
