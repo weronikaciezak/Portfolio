@@ -9,7 +9,8 @@ const projects = [
         description: "A full-stack web application for bookstore management built with Spring Boot, Thymeleaf, Hibernate, and PostgreSQL.",
         badges: ["Java", "Spring Boot", "Hibernate", "Thymeleaf", "PostgreSQL"],
         repoName: "Bookstore",
-        image: bookstore
+        image: bookstore,
+        alt: "Bookstore web application screenshot - Spring Boot and PostgreSQL project"
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ const projects = [
         description: "A Node.js and PostgreSQL application containerized with Docker, using automated CI/CD deployment pipeline built with Jenkins to deploy code upon commit.",
         badges: ["Node.js", "Docker", "Jenkins", "PostgreSQL", "Express" ],
         repoName: "SimpleTodo",
-        image: simpletodo
+        image: simpletodo,
+        alt: "Simple To-Do application screenshot - Node.js and Docker project"
     },
     {
         id: 3,
@@ -26,6 +28,7 @@ const projects = [
         badges: ["Google Firebase", "Jetpack Compose", "Firebase Authentication"],
         repoName: "GymBros",
         image: simpletodo,
+        alt: "GymBros Android fitness app - Jetpack Compose project"
     }
 ];
 
@@ -38,12 +41,16 @@ export const Projects = () => {
     return(
         <Container>
             {projects.map((project) => (
-                <Project key={project.id}>
-                    <Image src={project.image} onClick={() => goToGithub(project.repoName)} />
+                <article key={project.id}>
+                    <Image 
+                        src={project.image} 
+                        alt={project.alt}
+                        onClick={() => goToGithub(project.repoName)} 
+                    />
 
                     <Content>
                         <Title>{project.title}</Title>
-                        <div style={{ display: "flex" }}>{project.description}</div>
+                        <p style={{ display: "flex" }}>{project.description}</p>
 
                         <BadgeContainer>
                             {project.badges.map((badge, index) => (
@@ -51,7 +58,7 @@ export const Projects = () => {
                             ))}
                         </BadgeContainer>
                     </Content>
-                </Project>
+                </article>
             ))}
         </Container>
     )
@@ -64,14 +71,14 @@ const Container = styled.div`
     flex-wrap: wrap;
 `;
 
-const Project = styled.div`
-    display: flex;
-    gap: 1rem;
-    
-    @media (max-width: 600px) {
-        flex-direction: column;
-    }
-`;
+// const Project = styled.article`
+//     display: flex;
+//     gap: 1rem;
+//
+//     @media (max-width: 600px) {
+//         flex-direction: column;
+//     }
+// `;
 
 const Content = styled.div`
     display: flex;
