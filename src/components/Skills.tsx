@@ -26,10 +26,10 @@ const skills = [
 
 export const Skills = () => {
     return(
-        <Container>
+        <Container role="list">
             {skills.map(({ icon: Icon, name }) => (
-                <Tile key={name}>
-                    <Icon color="var(--icon-color)" size="3rem" />
+                <Tile key={name} role="listitem" title={`${name}`}>
+                    <Icon color="var(--icon-color)" size="3rem" aria-label={`${name}`} />
                     <Text>{name}</Text>
                 </Tile>
             ))}
