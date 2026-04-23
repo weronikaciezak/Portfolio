@@ -72,7 +72,7 @@ const Font = styled.div`
     padding: 0 0.5rem 0 0;
 
     @media (max-width: 600px) {
-        font-size: 0.70rem;
+        display: none;
     }
 `;
 
@@ -82,4 +82,8 @@ const Dot = styled.div`
     border-radius: 50%;
     background-color: green;
     //filter: drop-shadow(0px 0px 2px green);
+
+    @media (max-width: 600px) {
+        display: none;
+    }
 `;
