@@ -33,7 +33,7 @@ pipeline {
     post {
         always {
             script {
-                sh 'docker-compose logs'
+                sh 'docker compose logs'
             }
         }
     }
