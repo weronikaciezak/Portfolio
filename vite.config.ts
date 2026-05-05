@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-      allowedHosts: ['weronikaciezak.wiktormalyska.ovh']
+      allowedHosts: ['weronikaciezak.dev']
   },
   worker: {
     format: 'es'
