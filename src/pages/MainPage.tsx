@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 export const MainPage = () => {
     return (
-        <Layout title="Weronika Ciężak | Portfolio">
+        <Layout title="Weronika Ciężak | Software Developer">
             <Container>
                 <Typewriter/>
                 <H1>hi I'm Weronika 👋</H1>
