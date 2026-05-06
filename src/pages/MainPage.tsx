@@ -23,6 +23,7 @@ export const MainPage = () => {
             <Projects/>
 
             <H2>Certificates</H2>
+            <p>LanguageCert</p>
 
         </Layout>
     )
