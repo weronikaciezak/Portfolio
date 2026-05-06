@@ -4,9 +4,4 @@ services:
     image: portfolio-weronikaciezak:latest
     ports:
       - "3000:3000"
-    networks:
-      - caddy_net
-
-networks:
-  caddy_net:
-    external: true
+    restart: unless-stopped
