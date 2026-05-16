@@ -15,7 +15,7 @@ const projects = [
         id: 2,
         title: "Simple To-Do",
         description: "A Node.js and PostgreSQL application containerized with Docker, using automated CI/CD deployment pipeline built with Jenkins to deploy code upon commit.",
-        badges: ["Node.js", "Docker", "Jenkins", "PostgreSQL", "Express" ],
+        badges: ["Docker", "Jenkins", "PostgreSQL", "Express" ],
         repoName: "SimpleTodo",
         image: simpletodo
     },
@@ -23,7 +23,7 @@ const projects = [
         id: 3,
         title: "GymBros",
         description: "A native Android social fitness app built with Kotlin, Jetpack Compose, and Google Firebase, featuring user matching, custom workouts, and interactive challenges.",
-        badges: ["Google Firebase", "Jetpack Compose", "Firebase Authentication"],
+        badges: ["Google Firebase", "Jetpack Compose", "Firebase Authentication", "Kotlin"],
         repoName: "GymBros",
         image: simpletodo,
     }

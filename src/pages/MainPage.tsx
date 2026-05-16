@@ -3,9 +3,11 @@ import {Skills} from "../components/Skills.tsx";
 import {Typewriter} from "../components/Typrewriter.tsx";
 import {Socials} from "../components/Socials.tsx";
 import {Projects} from "../components/Projects.tsx";
+import {Certificates} from "../components/Certificates.tsx";
 import styled from "styled-components";
 
 export const MainPage = () => {
+
     return (
         <Layout title="Weronika Ciężak | Software Developer">
             <Container>
@@ -23,7 +25,8 @@ export const MainPage = () => {
             <Projects/>
 
             <H2>Certificates</H2>
-            <p>LanguageCert</p>
+            <Certificates/>
+
 
         </Layout>
     )
