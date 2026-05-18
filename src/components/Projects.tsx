@@ -38,20 +38,23 @@ export const Projects = () => {
     return(
         <Container>
             {projects.map((project) => (
-                <Project key={project.id}>
-                    <Image src={project.image} onClick={() => goToGithub(project.repoName)} />
+                <>
+                    <Project key={project.id}>
+                        <Image src={project.image} onClick={() => goToGithub(project.repoName)}/>
 
-                    <Content>
-                        <Title>{project.title}</Title>
-                        <div style={{ display: "flex" }}>{project.description}</div>
+                        <Content>
+                            <Title>{project.title}</Title>
+                            <div style={{display: "flex"}}>Short desciption: {project.description}</div>
 
-                        <BadgeContainer>
-                            {project.badges.map((badge, index) => (
-                                <Badge key={index}>{badge}</Badge>
-                            ))}
-                        </BadgeContainer>
-                    </Content>
-                </Project>
+                            <BadgeContainer>
+                                {project.badges.map((badge, index) => (
+                                    <Badge key={index}>{badge}</Badge>
+                                ))}
+                            </BadgeContainer>
+                        </Content>
+
+                    </Project>
+                </>
             ))}
         </Container>
     )
@@ -60,16 +63,24 @@ export const Projects = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 1rem;
     flex-wrap: wrap;
 `;
 
 const Project = styled.div`
     display: flex;
     gap: 1rem;
+    background: var(--primary-color);
+    cursor: pointer;
     
     @media (max-width: 600px) {
         flex-direction: column;
+    }
+    
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    &:hover {
+        transform: scale(1.01);
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
     }
 `;
 
@@ -90,12 +101,7 @@ const Image = styled.img`
     border-radius: 0.5rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
     cursor: pointer;
-
-    //&:hover {
-    //    transform: scale(1.05);
-    //    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25)) brightness(70%);
-    //    transition: 0.2s;
-    //}
+    
 
     @media (max-width: 600px) {
         width: 100%;

@@ -96,7 +96,7 @@ const Toast = styled.div`
     -webkit-backdrop-filter: blur(10px); 
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     
     animation: slideUp 0.3s ease-in-out;
     
