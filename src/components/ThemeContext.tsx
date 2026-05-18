@@ -10,7 +10,11 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: ReactNode }) {
     const [isDark, setIsDark] = useState<boolean>(() => {
         const savedTheme = localStorage.getItem('app-theme');
-        return savedTheme === 'dark';
+        if (savedTheme !== null) {
+            return savedTheme === 'dark';
+        }
+        // Jeśli nie ma ustawionego motywu, użyj preferencji przeglądarki
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
 
     useEffect(() => {
@@ -23,7 +27,25 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
     }, [isDark]);
 
-    const toggleTheme = () => setIsDark(!isDark);
+    // Słuchaj zmian preferencji motywu przeglądarki
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            const savedTheme = localStorage.getItem('app-theme');
+            if (savedTheme === null) {
+                // Tylko zmień motyw jeśli użytkownik nie ustawił go ręcznie
+                setIsDark(e.matches);
+            }
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
+
+    const toggleTheme = () => {
+        setIsDark(!isDark);
+    };
 
     return (
         <ThemeContext.Provider value={{ isDark, toggleTheme }}>
