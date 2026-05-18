@@ -7,37 +7,60 @@ export const Certificates= () => {
     };
 
     return (
-        <>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         <Container>
-            <p>LANGUAGECERT Test of English C1 (Listening, Reading)</p>
-            <p>Issued on: 11 /03/2026</p>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <Text>LANGUAGECERT Test of English (Listening, Reading)</Text>
+                <Text>C1</Text>
+                <SmallText>Issued on: 11/03/2026</SmallText>
+            </div>
+
+            <Image title="View Certificate" src={badge} onClick={() => goToLanguageCert()} />
         </Container>
-        <Image src={badge} onClick={() => goToLanguageCert()} />
-        </>
+        </div>
     )
 }
 
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.1rem;
+    background: var(--primary-color);
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    &:hover {
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+`
+
+const Text = styled.div`
+    font-size: 1rem;
+`
+const SmallText = styled.div`
+    font-size: 0.7rem;
+    color: var(--secondary-color);
 `
 
 const Image = styled.img`
     display: block;
     background-size: cover;
     background-position: center;
-    height: 12rem;
-    background-color: var(--primary-color);
-    border-radius: 0.5rem;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    height: 4rem;
     cursor: pointer;
-
-    //&:hover {
-    //    transform: scale(1.05);
-    //    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25)) brightness(70%);
-    //    transition: 0.2s;
-    //}
-
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    &:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
     @media (max-width: 600px) {
         width: 100%;
         height: auto;
