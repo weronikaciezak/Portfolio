@@ -12,8 +12,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 export const ResumePage = () => {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
-    const [language, setLanguage] = useState<string>("en");
     const [pageWidth, setPageWidth] = useState(0);
+
+    const [language, setLanguage] = useState<string>("en");
     const resumeFile = language === "en" ? resumeEN : resumePL;
     const downloadName = language === "en" ? "weronika_ciezak_resume.pdf" : "weronika_ciezak_cv.pdf";
 
@@ -31,24 +32,47 @@ export const ResumePage = () => {
         return () => observer.disconnect();
     }, []);
 
-    const handleLanguageToggle = () => {
-        setLanguage((currentLanguage) => currentLanguage === "en" ? "pl" : "en");
+    const setToPolish = () => {
+        setLanguage("pl");
+    };
+
+    const setToEnglish = () => {
+        setLanguage("en");
+    };
+
+
+    const downloadResume = () => {
+        const link = document.createElement('a');
+        link.href = resumeFile;
+        link.download = downloadName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
     };
 
     return (
         <Layout title="Weronika Ciężak | Resume">
             <Container>
                 <AnimatedCard>
-                    <Button onClick={handleLanguageToggle}>
-                        {language === "en" ? "to Polish" : "to English"}
-                    </Button>
+                    <Button2 onClick={setToPolish}>
+                        🇵🇱
+                    </Button2>
                 </AnimatedCard>
+
                 <AnimatedCard>
-                    <Button title="Download Resume" href={resumeFile} download={downloadName}>
-                        <i className="fa-solid fa-download fa-lg"></i>
-                    </Button>
+                <Button2 onClick={setToEnglish}>
+                        🇬🇧
+                    </Button2>
+                </AnimatedCard>
+
+                <AnimatedCard>
+                    <Button2 onClick={downloadResume}>
+                        <i className="fa-solid fa-download fa-l"></i>
+                        Download
+                    </Button2>
                 </AnimatedCard>
             </Container>
+
             <AnimatedCard>
                 <PdfWrapper ref={wrapperRef}>
                     <PdfDocumentShell>
@@ -68,24 +92,31 @@ export const ResumePage = () => {
 
 const Container = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-end;
-    gap: 1rem;
-    padding: 0 0.5rem 0.5rem 0;
+    gap: 0.5rem;
+    padding: 0 0 0.6rem 0;
 `;
 
-const Button = styled.a`
+const Button2 = styled.div`
     cursor: pointer;
     user-select: none;
-    text-align: end;
-    font-family: "Young Serif", sans-serif;
-    font-size: 1.01rem;
+    font-size: 0.9rem;
     color: var(--text-color);
     transition: transform 0.2s ease, 0.2s ease;
+    gap: 0.5rem;
 
+    text-decoration: none;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    
     &:hover {
-        color: white;
-        transform: scale(1.02);
+        transform: scale(1.1);
     }
 `;
 
