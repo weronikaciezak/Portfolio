@@ -74,10 +74,11 @@ const Button = styled.a`
     text-align: end;
     font-family: "Young Serif", sans-serif;
     font-size: 1.01rem;
-    color: var(--primary-color);
-    transition: color 0.1s ease;
+    color: var(--text-color);
+    transition: transform 0.2s ease, 0.2s ease;
     &:hover {
-        color: var(--text-color);
+        color: white;
+        transform: scale(1.02);
     }
 `;
 

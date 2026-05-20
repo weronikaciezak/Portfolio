@@ -15,13 +15,13 @@ export const Layout = ({ children, title } : LayoutProps ) => {
 
     return (
         <LayoutContainer>
-            <Navbar />
+            <Navbar/>
 
             <MainContent>
                 {children}
             </MainContent>
 
-            <Footer />
+            <Footer/>
         </LayoutContainer>
     );
 };
