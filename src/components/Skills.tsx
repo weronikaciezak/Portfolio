@@ -69,7 +69,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
     justify-content: center;
-    gap: 1rem;
+    gap: 0.7rem;
 
     @media (max-width: 600px) {
         grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
