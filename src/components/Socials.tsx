@@ -75,13 +75,13 @@ export const Socials = () => {
 const Container = styled.div`
     display: flex;
     gap: 1rem;
-    padding: 1.5rem 0 0 0;
+    padding-top: var(--margin-l);
 `;
 
 const Icon = styled.div`
     cursor: pointer;
     color: var(--primary-color);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, 0.3s ease;
 
     :hover {
         color: var(--text-color);
