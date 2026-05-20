@@ -1,11 +1,12 @@
 import {useEffect, useRef, useState} from "react";
 import {Layout} from "../layouts/Layout.tsx";
-import { Document, Page, pdfjs } from 'react-pdf';
+import {Document, Page, pdfjs} from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import resumeEN from "../assets/resumeEN.pdf";
 import resumePL from "../assets/resumePL.pdf";
 import styled from "styled-components";
+import {AnimatedCard} from "../components/AnimatedCard.tsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
@@ -14,7 +15,7 @@ export const ResumePage = () => {
     const [language, setLanguage] = useState<string>("en");
     const [pageWidth, setPageWidth] = useState(0);
     const resumeFile = language === "en" ? resumeEN : resumePL;
-    const downloadName = language === "en" ? "weronika_ciezak_resume_en.pdf" : "weronika_ciezak_resume_pl.pdf";
+    const downloadName = language === "en" ? "weronika_ciezak_resume.pdf" : "weronika_ciezak_cv.pdf";
 
     useEffect(() => {
         if (!wrapperRef.current) {
@@ -33,29 +34,34 @@ export const ResumePage = () => {
     const handleLanguageToggle = () => {
         setLanguage((currentLanguage) => currentLanguage === "en" ? "pl" : "en");
     };
-    
-    return(
+
+    return (
         <Layout title="Weronika Ciężak | Resume">
             <Container>
-                <Button onClick={handleLanguageToggle}>
-                    {language === "en" ? "to Polish" : "to English" }
-                </Button>
-                <Button title="Download Resume" href={resumeFile} download={downloadName}>
-                    <i className="fa-solid fa-download fa-lg"></i>
-                </Button>
+                <AnimatedCard>
+                    <Button onClick={handleLanguageToggle}>
+                        {language === "en" ? "to Polish" : "to English"}
+                    </Button>
+                </AnimatedCard>
+                <AnimatedCard>
+                    <Button title="Download Resume" href={resumeFile} download={downloadName}>
+                        <i className="fa-solid fa-download fa-lg"></i>
+                    </Button>
+                </AnimatedCard>
             </Container>
-
-            <PdfWrapper ref={wrapperRef}>
-                <PdfDocumentShell>
-                    <Document file={resumeFile}>
-                        {pageWidth > 0 && (
-                            <PdfPageShell>
-                                <Page pageNumber={1} width={pageWidth} />
-                            </PdfPageShell>
-                        )}
-                    </Document>
-                </PdfDocumentShell>
-            </PdfWrapper>
+            <AnimatedCard>
+                <PdfWrapper ref={wrapperRef}>
+                    <PdfDocumentShell>
+                        <Document file={resumeFile}>
+                            {pageWidth > 0 && (
+                                <PdfPageShell>
+                                    <Page pageNumber={1} width={pageWidth}/>
+                                </PdfPageShell>
+                            )}
+                        </Document>
+                    </PdfDocumentShell>
+                </PdfWrapper>
+            </AnimatedCard>
         </Layout>
     )
 }
@@ -76,6 +82,7 @@ const Button = styled.a`
     font-size: 1.01rem;
     color: var(--text-color);
     transition: transform 0.2s ease, 0.2s ease;
+
     &:hover {
         color: white;
         transform: scale(1.02);

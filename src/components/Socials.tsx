@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
+import {AnimatedCard} from "./AnimatedCard.tsx";
 
 export const Socials = () => {
     const toastTimeoutRef = useRef<number | null>(null);
@@ -39,8 +40,9 @@ export const Socials = () => {
         };
     }, []);
 
-    return(
+    return (
         <>
+            <AnimatedCard>
             <Container>
                 <Icon
                     title="Open GitHub"
@@ -68,6 +70,7 @@ export const Socials = () => {
             </Container>
 
             {toastMessage && <Toast>{toastMessage}</Toast>}
+            </AnimatedCard>
         </>
     )
 }
@@ -75,7 +78,7 @@ export const Socials = () => {
 const Container = styled.div`
     display: flex;
     gap: 1rem;
-    padding-top: var(--margin-l);
+    padding-top: var(--margin-m);
 `;
 
 const Icon = styled.div`
@@ -101,13 +104,13 @@ const Toast = styled.div`
     font-size: 0.95rem;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    
+
     animation: slideUp 0.3s ease-in-out;
-    
+
     @keyframes slideUp {
         from {
             opacity: 0;

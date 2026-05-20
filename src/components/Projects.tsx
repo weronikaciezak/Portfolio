@@ -16,6 +16,7 @@ import {
     SiHtml5,
     SiJavascript, SiHibernate, SiThymeleaf
 } from '@icons-pack/react-simple-icons';
+import {AnimatedCard} from "./AnimatedCard.tsx";
 
 const iconMap: { [key: string]: React.ComponentType } = {
     "JavaScript": SiJavascript,
@@ -104,6 +105,7 @@ export const Projects = () => {
     return (
         <Container>
             {projects.map((project) => (
+                <AnimatedCard>
                 <Project key={project.id}>
                     <ImageWrapper>
                         <Image src={project.image}/>
@@ -140,7 +142,9 @@ export const Projects = () => {
                         </BadgeContainer>
                     </Content>
                 </Project>
+                </AnimatedCard>
             ))}
+
         </Container>
     )
 }

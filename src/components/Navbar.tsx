@@ -9,11 +9,11 @@ export const Navbar = () => {
     // const redirectContact = () => navigate("/contact");
 
     return(
+
         <Wrapper>
             <Container1>
                 <Text onClick={redirectHome}>Home</Text>
                 <Text onClick={redirectResume}>Resume</Text>
-                {/*<SmallTitle onClick={redirectContact}>Contact</SmallTitle>*/}
             </Container1>
             <Container2>
                 <Dot></Dot>
@@ -21,6 +21,7 @@ export const Navbar = () => {
                 {/*<Switch/>*/}
             </Container2>
         </Wrapper>
+
     )
 }
 
@@ -83,7 +84,7 @@ const Dot = styled.div`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: green;
+    background-color: #05b505;
     //filter: drop-shadow(0px 0px 2px green);
 
     @media (max-width: 600px) {

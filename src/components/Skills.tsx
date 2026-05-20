@@ -8,6 +8,7 @@ import {
     SiReact,
     SiSpringboot
 } from "@icons-pack/react-simple-icons";
+import {AnimatedCard} from "./AnimatedCard.tsx";
 
 const skills = [
     {name: "C++", icon: SiCplusplus},
@@ -28,10 +29,12 @@ export const Skills = () => {
     return(
         <Container role="list">
             {skills.map(({ icon: Icon, name }) => (
+                <AnimatedCard>
                 <Tile key={name} role="listitem" title={`${name}`}>
                     <Icon color="var(--icon-color)" size="3rem" aria-label={`${name}`} />
                     <Text>{name}</Text>
                 </Tile>
+                </AnimatedCard>
             ))}
         </Container>
     )
@@ -80,8 +83,9 @@ const Text = styled.div`
     color: var(--icon-color);
     margin-bottom: -0.3rem;
     text-align: center;
+    font-size: 0.8rem;
     
     @media (max-width: 600px) {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
 `;

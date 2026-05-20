@@ -1,25 +1,28 @@
 import styled from "styled-components";
 import badge from "../assets/languagecertbadge.png";
+import {AnimatedCard} from "./AnimatedCard.tsx";
 
 export const Certificates= () => {
 
     return (
-        <Container
-            as="a"
-            href={`https://badges.peoplecert.org/Badge/en/D90BA5A3-E0C4-4E1E-8830-C52D7BD99BE0`}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <AnimatedCard>
+            <Container
+                as="a"
+                href={`https://badges.peoplecert.org/Badge/en/D90BA5A3-E0C4-4E1E-8830-C52D7BD99BE0`}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
 
-            <Image src={badge}/>
+                <Image src={badge}/>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
-                <Text>LANGUAGECERT Test of English (Listening, Reading)</Text>
-                <Text>C1</Text>
-                <SmallText>Issued on: 11/03/2026</SmallText>
-            </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <Text>LANGUAGECERT Test of English (Listening, Reading)</Text>
+                    <Text>C1</Text>
+                    <SmallText>Issued on: 11/03/2026</SmallText>
+                </div>
 
-        </Container>
+            </Container>
+        </AnimatedCard>
     )
 }
 
