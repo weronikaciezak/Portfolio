@@ -38,7 +38,7 @@ body {
     --primary-color: #665c84;
     --secondary-color:#DFDEF9; /*title color*/
     --icon-color: #DFDEF9;
-    --accent-color: #b8c168;
+    --accent-color: #8b9e1f;
     --opacity: 0.09;
     --badge-color: #292337;
     --description-color: #c6c5dd;
@@ -46,6 +46,7 @@ body {
 
 :root, #root, body {
     margin: 0;
+    color: #DFDEF9;
     padding: 0;
     box-sizing: border-box;
     overscroll-behavior-y: none; /* for overscrolling on mobile */
