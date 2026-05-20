@@ -4,11 +4,11 @@ import {ResumePage} from "./pages/ResumePage.tsx";
 import {NotFoundPage} from "./pages/NotFoundPage";
 import {Background} from "./components/Background.tsx";
 import {ContactPage} from "./pages/ContactPage.tsx";
-import { ThemeProvider } from './components/ThemeContext';
+// import { ThemeProvider } from './components/ThemeContext';
 
 export const App = () => {
     return (
-        <ThemeProvider>
+        // <ThemeProvider>
             <BrowserRouter>
                 <Background/>
                 <Routes>
@@ -18,6 +18,6 @@ export const App = () => {
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </BrowserRouter>
-        </ThemeProvider>
+        // </ThemeProvider>
     )
 }
