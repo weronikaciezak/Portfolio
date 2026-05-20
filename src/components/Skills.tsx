@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
     SiCplusplus, SiCss, SiDjango,
-    SiDocker, SiFigma, SiFirebase,
+    SiDocker, SiFirebase, SiJavascript,
     SiJenkins, SiKotlin,
     SiPostgresql,
     SiPython,
@@ -13,15 +13,15 @@ const skills = [
     {name: "C++", icon: SiCplusplus},
     {name: "Python", icon: SiPython},
     {name: "Kotlin", icon: SiKotlin},
+    {name: "JavaScript", icon: SiJavascript },
     {name: "React", icon: SiReact},
+    {name: "CSS", icon: SiCss},
     {name: "Docker", icon: SiDocker},
     {name: "Jenkins", icon: SiJenkins},
     {name: "Spring Boot", icon: SiSpringboot},
     {name: "Django", icon: SiDjango},
     {name: "PostgreSQL", icon: SiPostgresql},
     {name: "Firebase", icon: SiFirebase},
-    {name: "CSS", icon: SiCss},
-    {name: "Figma", icon: SiFigma}
 ]
 
 export const Skills = () => {
