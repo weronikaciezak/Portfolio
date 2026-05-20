@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Switch} from "./Switch.tsx";
+// import {Switch} from "./Switch.tsx";
 import {useNavigate} from "react-router-dom";
 
 export const Navbar = () => {
@@ -11,14 +11,14 @@ export const Navbar = () => {
     return(
         <Wrapper>
             <Container1>
-                <SmallTitle onClick={redirectHome}>Home</SmallTitle>
-                <SmallTitle onClick={redirectResume}>Resume</SmallTitle>
+                <Text onClick={redirectHome}>Home</Text>
+                <Text onClick={redirectResume}>Resume</Text>
                 {/*<SmallTitle onClick={redirectContact}>Contact</SmallTitle>*/}
             </Container1>
             <Container2>
                 <Dot></Dot>
                 <Font>Open to work</Font>
-                <Switch/>
+                {/*<Switch/>*/}
             </Container2>
         </Wrapper>
     )
@@ -55,13 +55,16 @@ const Container2 = styled.div`
     gap: 0.5rem;
 `;
 
-const SmallTitle = styled.div`
+const Text = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 0.90rem;
     cursor: pointer;
-    
+    color: var(--text-color);
+
+    transition: transform 0.2s ease, 0.2s ease;
     &:hover {
-        text-decoration: underline;
+        transform: scale(1.02);
+        color: white;
     }
     
 `;

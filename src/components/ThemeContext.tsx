@@ -13,7 +13,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         if (savedTheme !== null) {
             return savedTheme === 'dark';
         }
-        // Jeśli nie ma ustawionego motywu, użyj preferencji przeglądarki
         return window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
 
@@ -27,14 +26,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
     }, [isDark]);
 
-    // Słuchaj zmian preferencji motywu przeglądarki
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
         const handleChange = (e: MediaQueryListEvent) => {
             const savedTheme = localStorage.getItem('app-theme');
             if (savedTheme === null) {
-                // Tylko zmień motyw jeśli użytkownik nie ustawił go ręcznie
                 setIsDark(e.matches);
             }
         };
