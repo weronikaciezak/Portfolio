@@ -3,12 +3,6 @@ import styled from "styled-components";
 
 export const Socials = () => {
     const toastTimeoutRef = useRef<number | null>(null);
-    const goToGithub = () => {
-        window.open('https://github.com/weronikaciezak', '_blank');
-    };
-    const goToLinkedin = () => {
-        window.open('https://www.linkedin.com/in/weronika-ci%C4%99%C5%BCak-1554b8359/', '_blank');
-    };
 
     const [isCopied, setIsCopied] = useState(false);
     const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -48,15 +42,27 @@ export const Socials = () => {
     return(
         <>
             <Container>
-                <Icon title="Open GitHub" onClick={goToGithub}>
+                <Icon
+                    title="Open GitHub"
+                    as="a"
+                    href={`https://github.com/weronikaciezak`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <i className="fa-brands fa-github fa-xl"></i>
                 </Icon>
 
-                <Icon title="Open LinkedIn" onClick={goToLinkedin}>
+                <Icon
+                    title="Open LinkedIn"
+                    as="a"
+                    href={`https://www.linkedin.com/in/weronika-ci%C4%99%C5%BCak-1554b8359/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <i className="fa-brands fa-linkedin fa-xl"></i>
                 </Icon>
 
-                <Icon title="Copy email" onClick={copyEmail}>
+                <Icon title="Copy email" onClick={() => copyEmail()}>
                     <i className={`fa-solid fa-xl ${isCopied ? 'fa-envelope-circle-check' : 'fa-envelope'}`}></i>
                 </Icon>
             </Container>
@@ -75,6 +81,8 @@ const Container = styled.div`
 const Icon = styled.div`
     cursor: pointer;
     color: var(--primary-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
     :hover {
         color: var(--text-color);
     }
