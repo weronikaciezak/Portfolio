@@ -9,34 +9,34 @@ import styled from "styled-components";
 export const MainPage = () => {
 
     return (
-        <Layout title="Weronika Ciężak | Software Developer">
+        <Layout title="Weronika Ciężak | Developer Portfolio">
             <Container>
                 <Typewriter/>
                 <H1>hi I'm Weronika 👋</H1>
-                <div>I am a 4th year Computer Science student based in Poland.</div>
-                <div>I create full-stack applications.</div>
+                <span>I am a 4th year Computer Science student from Poland.</span>
+                <span>I create full-stack applications.</span>
                 <Socials/>
             </Container>
 
             <H2>Tools I worked with</H2>
             <Skills/>
 
-            <H2>Projects</H2>
-            <Projects/>
-
             <H2>Certificates</H2>
             <Certificates/>
 
-
+            <H2>Projects</H2>
+            <Projects/>
         </Layout>
     )
 }
 
 const Container = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 7rem 0 0 0;
+    padding-top: 7rem;
+    padding-bottom: 1rem;
     
     @media (max-width: 600px) {
         padding: 7rem 0 6rem 0;
@@ -46,7 +46,7 @@ const Container = styled.div`
 const H1 = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: clamp(1.9rem, 3vw, 2.5rem);
-    padding: 0 0 1rem 0;
+    padding-bottom: var(--margin-l);
     
     @media (max-width: 600px) {
         font-size: 1.7rem;
@@ -56,5 +56,6 @@ const H1 = styled.div`
 const H2 = styled.div`
     font-family: "Unbounded", sans-serif;
     font-size: 1.3rem;
-    padding: 11rem 0 1.3rem 0;
+    padding-bottom: var(--margin-l);
+    padding-top: var(--margin-xxxl);
 `;

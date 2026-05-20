@@ -24,12 +24,11 @@ export const Certificates= () => {
 }
 
 const Container = styled.div`
-    width: 100%;
     flex-direction: row;
     padding: 0.9rem;
     gap: 1rem;
     text-decoration: none;
-    display: inline-flex;
+    display: flex;
     color: inherit;
 
     border-radius: 0.5rem;
@@ -39,7 +38,8 @@ const Container = styled.div`
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     @media (max-width: 768px) {
@@ -49,7 +49,6 @@ const Container = styled.div`
     &:hover {
         transform: scale(1.05);
     }
-
 `
 
 const Text = styled.div`
@@ -65,4 +64,11 @@ const Image = styled.img`
     background-size: cover;
     background-position: center;
     height: 4rem;
+    border-radius: 0.3rem;
+
+    @media (max-width: 768px) {
+        display: block;
+        height: 3rem;
+        width: 3rem;
+    }
 `;
