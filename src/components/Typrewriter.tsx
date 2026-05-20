@@ -32,4 +32,8 @@ const H1 = styled.div`
     font-size: 1.5rem;
     font-family: "Young Serif", sans-serif;
     color: var(--secondary-color);
+    
+    @media (max-width: 600px) {
+        font-size: 1.2rem;
+    }
 `;

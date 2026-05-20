@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Cool 2D Shooter</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+            font-family: "Press Start 2P", sans-serif;
+        }
+        canvas {
+            background-color: rgba(48, 48, 48, 0.5);
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas">
+        Zacznij w końcu używać współczesnej przeglądarki!
+    </canvas>
+
+    <script>
+        // Cały kod gry w jednym pliku!
+        (() => {
+            // Gamemode
+            function Gamemode(name, enemyDamage, enemySpeed, enemySight, enemyAttackSpeed, playerSpeed, numberOfEnemies) {
+                this.name = name;
+                this.enemyDamage = enemyDamage;
+                this.enemySpeed = enemySpeed;
+                this.enemySight = enemySight;
+                this.enemyAttackSpeed = enemyAttackSpeed;
+                this.playerSpeed = playerSpeed;
+                this.numberOfEnemies = numberOfEnemies;
+            }
+            const gamemodes = [
+                new Gamemode("Normal", 5, 0.7, 200, 1000, 1, 10),
+                new Gamemode("Hard", 10, 0.8, 300, 700, 1, 20),
+                new Gamemode("Impossible", 15, 0.9, 600, 100, 0.9, 100)
+            ];
+
+            // State
+            const state = {
+                score: 0,
+                canvas: null,
+                ctx: null,
+                gameState: "start",
+                player: null,
+                cooldown: 0,
+                lastAttackTime: 0,
+                camera: 0,
+                gamemode: gamemodes[0],
+                message: null,
+                messageExpire: 0,
+                zoom: 2.5,
+                effects: []
+            };
+
+            function initializeCanvas() {
+                const myCanvas = document.querySelector("#gameCanvas");
+                const myCtx = myCanvas.getContext("2d");
+                state.canvas = myCanvas;
+                state.ctx = myCtx;
+            }
+
+            function drawHUD() {
+                const ctx = state.ctx;
+                ctx.save();
+                ctx.fillStyle = "rgba(77,77,77,0.6)";
+                ctx.fillRect(10, 10, 440, 100);
+                ctx.fillStyle = "white";
+                ctx.font = "bold 20px 'Press Start 2P', Arial, sans-serif";
+                ctx.textAlign = "left";
+                ctx.fillText(`Difficulty: ${state.gamemode.name}`, 20, 40);
+                ctx.fillText(`Score: ${state.score}`, 20, 70);
+                ctx.fillText(`Healing items: ${state.player.inventory.healingItems}`, 20, 100);
+
+                if (state.message && Date.now() < state.messageExpire) {
+                    ctx.font = "bold 18px 'Press Start 2P', Arial, sans-serif";
+                    ctx.fillStyle = "white";
+                    ctx.textAlign = "center";
+                    const cx = state.canvas.width / 2;
+                    const cy = state.canvas.height - 40;
+                    ctx.fillText(state.message, cx, cy);
+                }
+                ctx.restore();
+            }
+
+            function postMessage(message) {
+                state.message = message;
+                state.messageExpire = Date.now() + 2000;
+            }
+
+            function drawScreen(bgColor, titleColor, title, line1, line2 = null, line3 = null, line4 = null, line5 = null) {
+                const cx = state.canvas.width / 2;
+                const cy = state.canvas.height / 2 - 100;
+
+                state.ctx.fillStyle = bgColor;
+                state.ctx.fillRect(0, 0, state.canvas.width, state.canvas.height);
+
+                state.ctx.textAlign = "center";
+                state.ctx.fillStyle = titleColor;
+                state.ctx.font = "bold 48px 'Press Start 2P', Arial, sans-serif";
+                state.ctx.fillText(title, cx, cy);
+
+                state.ctx.font = "normal 30px 'Press Start 2P', Arial, sans-serif";
+                if (line1) state.ctx.fillText(line1, cx, cy + 100);
+                state.ctx.font = "normal 20px 'Press Start 2P', Arial, sans-serif";
+
+                if (line2) state.ctx.fillText(line2, cx, cy + 150);
+                state.ctx.font = "normal 14px 'Press Start 2P', Arial, sans-serif";
+                if (line3) state.ctx.fillText(line3, cx, cy + 190);
+                if (line4) state.ctx.fillText(line4, cx, cy + 220);
+                if (line5) state.ctx.fillText(line5, cx, cy + 250);
+            }
+
+            // Map
+            const W = 10;
+            const walls = [
+                { x: 150, y: 100, width: 95, height: W },
+                { x: 295, y: 100, width: 105, height: W },
+                { x: 150, y: 100, width: W, height: 95 },
+                { x: 150, y: 245, width: W, height: 155 },
+                { x: 400, y: 100, width: W, height: 215 },
+                { x: 400, y: 365, width: W, height: 35 },
+                { x: 150, y: 400, width: 25, height: W },
+                { x: 225, y: 400, width: 175, height: W },
+                { x: 150, y: 400, width: W, height: 45 },
+                { x: 150, y: 495, width: W, height: 25 },
+                { x: 360, y: 400, width: W, height: 120 },
+                { x: 360, y: 400, width: 44, height: W },
+                { x: 360, y: 520, width: 44, height: W },
+                { x: 150, y: 520, width: 65, height: W },
+                { x: 265, y: 520, width: 135, height: W },
+                { x: 150, y: 520, width: W, height: 220 },
+                { x: 400, y: 520, width: W, height: 75 },
+                { x: 400, y: 645, width: W, height: 95 },
+                { x: 150, y: 740, width: 95, height: W },
+                { x: 295, y: 740, width: 105, height: W },
+                { x: 460, y: 300, width: 120, height: W },
+                { x: 460, y: 300, width: W, height: 220 },
+                { x: 580, y: 300, width: W, height: 135 },
+                { x: 580, y: 485, width: W, height: 35 },
+                { x: 460, y: 520, width: 15, height: W },
+                { x: 525, y: 520, width: 55, height: W },
+                { x: 580, y: 420, width: 100, height: W },
+                { x: 680, y: 420, width: W, height: 100 },
+                { x: 580, y: 520, width: 25, height: W },
+                { x: 655, y: 520, width: 29, height: W },
+                { x: 460, y: 520, width: W, height: 55 },
+                { x: 460, y: 625, width: W, height: 35 },
+                { x: 680, y: 520, width: W, height: 140 },
+                { x: 460, y: 660, width: 20, height: W },
+                { x: 530, y: 660, width: 20, height: W },
+                { x: 595, y: 660, width: 90, height: W },
+                { x: 540, y: 660, width: W, height: 120 },
+                { x: 680, y: 660, width: W, height: 120 },
+                { x: 540, y: 780, width: 75, height: W },
+                { x: 665, y: 780, width: 25, height: W },
+                { x: 100, y: 100, width: 50, height: W },
+                { x: 100, y: 100, width: W, height: 700 },
+                { x: 100, y: 800, width: 450, height: W },
+                { x: 400, y: 300, width: 60, height: W },
+                { x: 400, y: 740, width: W, height: 64 },
+                { x: 460, y: 660, width: W, height: 144 },
+                { x: 540, y: 780, width: W, height: 24 }
+            ];
+
+            function drawMap() {
+                state.ctx.save();
+                state.ctx.fillStyle = "#0a0a0a";
+                for (let i = 0; i < walls.length; i++) {
+                    const w = walls[i];
+                    state.ctx.fillRect(w.x, w.y, w.width, w.height);
+                }
+                state.ctx.restore();
+            }
+
+            // Utils
+            function checkCollision(obj1, obj2) {
+                return obj1.x < obj2.x + obj2.width && obj1.x + obj1.width > obj2.x && obj1.y < obj2.y + obj2.height && obj1.y + obj1.height > obj2.y;
+            }
+
+            function getDistance(obj1, obj2) {
+                const w1 = obj1.width || 0;
+                const h1 = obj1.height || 0;
+                const centerX1 = obj1.x + w1 / 2;
+                const centerY1 = obj1.y + h1 / 2;
+
+                const w2 = obj2.width || 0;
+                const h2 = obj2.height || 0;
+                const centerX2 = obj2.x + w2 / 2;
+                const centerY2 = obj2.y + h2 / 2;
+
+                const dx = centerX2 - centerX1;
+                const dy = centerY2 - centerY1;
+
+                return Math.sqrt(dx * dx + dy * dy);
+            }
+
+            function moveWithCollisions(entity, dx, dy, wallsArray) {
+                entity.x += dx;
+                for (let i = 0; i < wallsArray.length; i++) {
+                    if (checkCollision(entity, wallsArray[i])) {
+                        entity.x -= dx;
+                        break;
+                    }
+                }
+
+                entity.y += dy;
+                for (let i = 0; i < wallsArray.length; i++) {
+                    if (checkCollision(entity, wallsArray[i])) {
+                        entity.y -= dy;
+                        break;
+                    }
+                }
+            }
+
+            function getSafeSpawnPos(objWidth, objHeight) {
+                let x, y, isSafe;
+
+                const minX = 120;
+                const maxX = 680 - objWidth;
+                const minY = 120;
+                const maxY = 780 - objHeight;
+
+                do {
+                    isSafe = true;
+                    x = minX + Math.random() * (maxX - minX);
+                    y = minY + Math.random() * (maxY - minY);
+
+                    const tempRect = { x, y, width: objWidth, height: objHeight };
+
+                    for (let i = 0; i < walls.length; i++) {
+                        if (checkCollision(tempRect, walls[i])) {
+                            isSafe = false;
+                            break;
+                        }
+                    }
+                } while (!isSafe);
+                return { x, y };
+            }
+
+            function hasLineOfSight(obj1, obj2, wallsArray) {
+                const startX = obj1.x + obj1.width / 2;
+                const startY = obj1.y + obj1.height / 2;
+
+                const endX = obj2.x + obj2.width / 2;
+                const endY = obj2.y + obj2.height / 2;
+
+                const dx = endX - startX;
+                const dy = endY - startY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx);
+
+                let currentDist = 0;
+                const step = 5;
+                let checkX = startX;
+                let checkY = startY;
+
+                while (currentDist < distance) {
+                    checkX += Math.cos(angle) * step;
+                    checkY += Math.sin(angle) * step;
+                    currentDist += step;
+
+                    if (typeof wallsArray !== 'undefined') {
+                        for (let i = 0; i < wallsArray.length; i++) {
+                            const wall = wallsArray[i];
+                            if (checkX >= wall.x && checkX <= wall.x + wall.width &&
+                                checkY >= wall.y && checkY <= wall.y + wall.height) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+            function cooldownbar(weapon) {
+                let ctx = state.ctx;
+
+                if (state.cooldown < weapon.cooldownTime) {
+
+                    const progressRatio = 1 - (state.cooldown / weapon.cooldownTime);
+
+                    const barMaxWidth = 40;
+                    const barCurrentWidth = barMaxWidth * progressRatio;
+                    const barHeight = 5;
+
+                    const barX = state.player.x + (state.player.width / 2) - (barMaxWidth / 2);
+                    const barY = state.player.y - 10;
+
+                    ctx.save();
+
+                    ctx.fillStyle = 'rgba(100, 100, 100, 0.9)';
+                    ctx.fillRect(barX, barY, barMaxWidth, barHeight);
+
+                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctx.fillRect(barX, barY, barCurrentWidth, barHeight);
+
+                    ctx.restore();
+                }
+            }
+
+            // Enemy
+            function Enemy(x, y, width, height, isBoss) {
+                this.isBoss = isBoss || false;
+                this.x = x;
+                this.y = y;
+                this.width = width || 20;
+                this.height = height || 40;
+                this.speed = !isBoss ? state.gamemode.enemySpeed : 0.9;
+                this.sightRange = !isBoss ? state.gamemode.enemySight : 3000;
+                this.attackDamage = !isBoss ? state.gamemode.enemyDamage : 50;
+
+                this.health = !isBoss ? 20 : 500;
+                this.maxHealth = !isBoss ? 20 : 500;
+                this.isDead = false;
+                this.isTargetted = false;
+
+                this.lastAttackTime = 0;
+                this.cooldownTime = state.gamemode.enemyAttackSpeed;
+                this.lastHitTime = 0;
+                this.flashDuration = 200;
+
+                this.readyToRemove = false;
+                this.deathTime = 0;
+                this.deathDuration = 300;
+
+                this.draw = function() {
+                    // death animations
+                    if (this.isDead) {
+                        state.ctx.save();
+                        const timePassed = Date.now() - this.deathTime;
+                        const ratio = 1 - (timePassed / this.deathDuration);
+
+                        if (ratio <= 0) {
+                            this.readyToRemove = true;
+                            state.ctx.restore();
+                            return;
+                        }
+
+                        state.ctx.fillStyle = 'orange';
+
+                        const currentW = this.width * ratio;
+                        const currentH = this.height * ratio;
+                        const currentX = this.x + (this.width / 2) - (currentW / 2);
+                        const currentY = this.y + (this.height / 2) - (currentH / 2);
+
+                        state.ctx.fillRect(currentX, currentY, currentW, currentH);
+                        state.ctx.restore();
+                        return;
+                    }
+                    this.drawBody();
+                };
+
+                this.getDamage = function(damage) {
+                    if (this.isDead) return;
+
+                    this.lastHitTime = Date.now();
+                    this.health = Math.max(this.health - damage, 0);
+
+                    if (this.health === 0) {
+                        this.isDead = true;
+                        this.deathTime = Date.now();
+                    }
+                };
+
+                this.update = function(enemies) {
+                    if (this.isDead) {
+                        this.draw();
+                        return;
+                    }
+
+                    if (checkCollision(this, state.player)) {
+                        const currentTime = Date.now();
+
+                        if (currentTime - this.lastAttackTime >= this.cooldownTime) {
+                            state.player.getDamage(this.attackDamage);
+                            this.lastAttackTime = currentTime;
+                        }
+                    }
+
+                    const distToPlayer = getDistance(this, state.player);
+                    const canSeePlayer = hasLineOfSight(this, state.player, walls);
+
+                    if (distToPlayer < this.sightRange && distToPlayer > 10 && canSeePlayer) {
+                        const angle = Math.atan2(state.player.y - this.y, state.player.x - this.x);
+
+                        const dx = Math.cos(angle) * this.speed;
+                        const dy = Math.sin(angle) * this.speed;
+
+                        moveWithCollisions(this, dx, dy, walls);
+                    }
+
+                    if (enemies) {
+                        for (let i = 0; i < enemies.length; i++) {
+                            const otherEnemy = enemies[i];
+                            if (this === otherEnemy || otherEnemy.isDead) continue;
+
+                            const distToOther = getDistance(this, otherEnemy);
+
+                            if (distToOther < 25) {
+                                const pushAngle = Math.atan2(this.y - otherEnemy.y, this.x - otherEnemy.x);
+
+                                const pushDx = Math.cos(pushAngle) * (this.speed * 0.5);
+                                const pushDy = Math.sin(pushAngle) * (this.speed * 0.5);
+
+                                moveWithCollisions(this, pushDx, pushDy, walls);
+                            }
+                        }
+                    }
+                    this.draw(state.ctx);
+                };
+
+                this.drawBody = function() {
+                    const ctx = state.ctx;
+                    ctx.save();
+
+                    const sx = this.x;
+                    const sy = this.y;
+
+                    const scaleX = this.width / 20;
+                    const scaleY = this.height / 40;
+
+                    ctx.save();
+
+                    ctx.translate(sx, sy);
+                    ctx.scale(scaleX, scaleY);
+
+                    ctx.fillStyle = '#444444';
+                    ctx.fillRect(4, 0, 12, 2);
+
+                    ctx.fillStyle = '#76a536';
+                    ctx.fillRect(4, 0, 12, 12);
+
+                    ctx.fillStyle = '#d32f2f';
+                    ctx.fillRect(6, 4, 2, 2);
+                    ctx.fillRect(12, 4, 2, 2);
+
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(7, 8, 6, 2);
+
+                    ctx.fillStyle = '#4a6b8c';
+                    ctx.fillRect(0, 12, 20, 16);
+
+                    ctx.fillStyle = '#4a6b8c';
+                    ctx.fillRect(16, 14, 4, 8);
+                    ctx.fillStyle = '#76a536';
+                    ctx.fillRect(16, 22, 4, 6);
+
+                    ctx.fillStyle = '#4a6b8c';
+                    ctx.fillRect(2, 6, 4, 10);
+                    ctx.fillStyle = '#76a536';
+                    ctx.fillRect(2, 16, 4, 8);
+
+                    ctx.fillStyle = '#604b3a';
+                    ctx.fillRect(2, 28, 7, 12);
+                    ctx.fillRect(11, 28, 7, 12);
+
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(2, 39, 4, 1);
+                    ctx.fillRect(14, 39, 4, 1);
+
+                    ctx.restore();
+
+                    const currentTime = Date.now();
+
+                    if (currentTime - this.lastHitTime < this.flashDuration) {
+                        ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                        ctx.fillRect(sx, sy, this.width, this.height);
+
+                    } else if (this.isTargetted) {
+                        ctx.fillStyle = 'rgba(200, 200, 200, 0.4)';
+                        ctx.fillRect(sx, sy, this.width, this.height);
+                    }
+
+                    if (this.health < this.maxHealth && !this.isDead) {
+                        ctx.fillStyle = 'red';
+                        ctx.fillRect(sx, sy - 8, this.width, 4);
+
+                        ctx.fillStyle = '#32CD32';
+                        const hpWidth = (this.health / this.maxHealth) * this.width;
+                        ctx.fillRect(sx, sy - 8, Math.max(0, hpWidth), 4);
+                    }
+
+                    ctx.restore();
+                };
+            }
+
+            // Player
+            function Player(x, y, inventory) {
+                this.x = x;
+                this.y = y;
+
+                this.baseSpeed = state.gamemode.playerSpeed;
+                this.sprintSpeed = state.gamemode.playerSpeed * 1.5;
+                this.speed = this.baseSpeed;
+                this.inventory = inventory || [];
+
+                this.width = 20;
+                this.height = 40;
+                this.health = 100;
+                this.maxHealth = 100;
+                this.isDead = false;
+                this.weapons = [];
+                this.currentWeapon = null;
+                this.isTargetted = false;
+
+                this.lastHitTime = 0;
+                this.lastHealTime = 0;
+                this.flashDuration = 200;
+
+                this.keys = {
+                    w: false,
+                    a: false,
+                    s: false,
+                    d: false,
+                    shift: false
+                };
+
+                this.draw = function() {
+                    this.drawBody();
+
+                    // health bar
+                    const currentHealth = Math.max(0, this.health);
+                    const healthBar = currentHealth / this.maxHealth;
+
+                    const barMaxWidth = 40;
+                    const barCurrentWidth = barMaxWidth * healthBar;
+                    const barHeight = 5;
+
+                    const barX = this.x + (this.width / 2) - (barMaxWidth / 2);
+                    const barY = this.y - 15;
+
+                    state.ctx.save();
+
+                    state.ctx.fillStyle = '#ffffff';
+                    state.ctx.fillRect(barX, barY, barMaxWidth, barHeight);
+
+                    state.ctx.fillStyle = 'green';
+                    state.ctx.fillRect(barX, barY, barCurrentWidth, barHeight);
+
+                    state.ctx.restore();
+                };
+
+                this.update = function() {
+                    if (this.keys.shift) {
+                        this.speed = this.sprintSpeed;
+                    } else {
+                        this.speed = this.baseSpeed;
+                    }
+
+                    const oldX = this.x;
+                    const oldY = this.y;
+
+                    if (this.keys.a) this.x -= this.speed;
+                    if (this.keys.d) this.x += this.speed;
+
+                    for (let i = 0; i < walls.length; i++) {
+                        if (checkCollision(this, walls[i])) {
+                            this.x = oldX;
+                            break;
+                        }
+                    }
+
+                    if (this.keys.w) this.y -= this.speed;
+                    if (this.keys.s) this.y += this.speed;
+
+                    for (let i = 0; i < walls.length; i++) {
+                        if (checkCollision(this, walls[i])) {
+                            this.y = oldY;
+                            break;
+                        }
+                    }
+
+                    this.draw(state.ctx);
+                };
+
+                this.restoreHealth = function() {
+                    if (this.health == this.maxHealth) {
+                        postMessage(`Health is full`);
+                        return;
+                    }
+
+                    if (this.inventory.healingItems > 0) {
+                        this.health = Math.min(this.health + 20, this.maxHealth);
+                        this.inventory.healingItems--;
+                        this.lastHealTime = Date.now();
+                        console.log(`Health restored to ${this.health}`);
+                    } else {
+                        postMessage(`You have no healing items`);
+                    }
+                };
+
+                this.getDamage = function(damage) {
+                    this.lastHitTime = Date.now();
+                    this.health = Math.max(this.health - damage, 0);
+                    if (this.health === 0) this.isDead = true;
+                };
+
+                this.setWeapon = function(weapon) {
+                    this.weapons.push(weapon);
+                    this.currentWeapon = weapon;
+                };
+
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'w' || e.key === 'W') this.keys.w = true;
+                    if (e.key === 'a' || e.key === 'A') this.keys.a = true;
+                    if (e.key === 's' || e.key === 'S') this.keys.s = true;
+                    if (e.key === 'd' || e.key === 'D') this.keys.d = true;
+                    if (e.key === 'Shift') this.keys.shift = true;
+
+                    if ((e.key === 'q' || e.key === 'Q') && !e.repeat) {
+                        this.restoreHealth();
+                    }
+                });
+
+                window.addEventListener('keyup', (e) => {
+                    if (e.key === 'w' || e.key === 'W') this.keys.w = false;
+                    if (e.key === 'a' || e.key === 'A') this.keys.a = false;
+                    if (e.key === 's' || e.key === 'S') this.keys.s = false;
+                    if (e.key === 'd' || e.key === 'D') this.keys.d = false;
+                    if (e.key === 'Shift') this.keys.shift = false;
+                });
+
+                this.drawBody = function() {
+                    const ctx = state.ctx;
+                    ctx.save();
+
+                    const sx = this.x;
+                    const sy = this.y;
+
+
+                    ctx.fillStyle = '#f1c27d';
+                    ctx.fillRect(sx + 6, sy + 5, 8, 9);
+
+                    ctx.fillStyle = '#796224';
+                    ctx.fillRect(sx + 4, sy + 4, 11, 4);
+                    ctx.fillRect(sx + 6, sy + 3, 8, 4);
+                    ctx.fillRect(sx + 5, sy + 5, 7, 4);
+
+                    ctx.fillStyle = '#f1c27d';
+
+                    ctx.fillStyle = '#29435c';
+                    ctx.fillRect(sx + 4, sy + 14, 12, 12);
+                    ctx.fillStyle = '#ffd700';
+                    ctx.fillRect(sx + 12, sy + 16, 2, 2);
+                    ctx.fillStyle = '#333333';
+                    ctx.fillRect(sx + 4, sy + 15, 2, 4);
+
+                    ctx.fillStyle = '#29435c';
+                    ctx.fillRect(sx + 0, sy + 15, 4, 9);
+                    ctx.fillStyle = '#f1c27d';
+                    ctx.fillRect(sx + 0, sy + 24, 4, 3);
+
+                    ctx.fillStyle = '#29435c';
+                    ctx.fillRect(sx + 16, sy + 15, 4, 9);
+                    ctx.fillStyle = '#f1c27d';
+                    ctx.fillRect(sx + 16, sy + 24, 4, 3);
+                    ctx.fillStyle = '#111111';
+                    ctx.fillRect(sx + 17, sy + 18, 2, 12);
+
+                    ctx.fillStyle = '#111111';
+                    ctx.fillRect(sx + 3, sy + 26, 14, 3);
+                    ctx.fillStyle = '#c0c0c0';
+                    ctx.fillRect(sx + 8, sy + 26, 4, 3);
+
+                    ctx.fillStyle = '#1e2b3c';
+                    ctx.fillRect(sx + 4, sy + 29, 5, 9);
+                    ctx.fillRect(sx + 11, sy + 29, 5, 9);
+
+                    ctx.fillStyle = '#111111';
+                    ctx.fillRect(sx + 3, sy + 38, 6, 2);
+                    ctx.fillRect(sx + 11, sy + 38, 6, 2);
+
+
+                    const currentTime = Date.now();
+
+                    // overlay
+
+                    if (currentTime - this.lastHitTime < this.flashDuration) {
+                        ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                        ctx.fillRect(sx, sy, this.width, this.height);
+                    } else if (currentTime - this.lastHealTime < this.flashDuration) {
+                        ctx.fillStyle = 'rgba(25,255,47,0.4)';
+                        ctx.fillRect(sx, sy, this.width, this.height);
+                    } else if (this.isTargetted) {
+                        ctx.fillStyle = 'rgba(200, 200, 200, 0.4)';
+                        ctx.fillRect(sx, sy, this.width, this.height);
+                    }
+
+                    ctx.restore();
+                };
+            }
+
+            // Input
+            const mouse = {
+                x: undefined,
+                y: undefined
+            };
+
+            addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            // Inventory
+            function Inventory() {
+                this.healingItems = 0;
+            }
+
+            // Item
+            function Item(x, y) {
+                this.x = x;
+                this.y = y;
+                this.width = 10;
+                this.height = 10;
+
+                this.draw = function() {
+                    const ctx = state.ctx;
+                    ctx.save();
+
+                    ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+
+                    const startX = -this.width / 2;
+                    const startY = -this.height / 2;
+
+                    ctx.fillStyle = '#5C3A21';
+                    ctx.fillRect(startX + 3, startY, 4, 4);
+
+                    ctx.fillStyle = '#9fb3c4';
+                    ctx.fillRect(startX + 2, startY + 4, 6, 3);
+
+                    ctx.fillStyle = '#e5ecef';
+                    ctx.fillRect(startX, startY + 7, 10, 13);
+
+                    ctx.fillStyle = '#00FFFF';
+                    ctx.fillRect(startX + 1, startY + 17, 8, 2);
+                    ctx.fillRect(startX, startY + 7, 2, 11);
+                    ctx.fillRect(startX + 8, startY + 7, 2, 11);
+
+                    ctx.fillStyle = '#FF0000';
+                    ctx.fillRect(startX + 4, startY + 10, 2, 6);
+                    ctx.fillRect(startX + 2, startY + 12, 6, 2);
+
+                    ctx.restore();
+                };
+            }
+
+            // Effects
+            function ExplosionEffect(x, y, maxRadius) {
+                this.x = x;
+                this.y = y;
+                this.maxRadius = maxRadius;
+
+                this.startTime = Date.now();
+                this.duration = 300;
+                this.readyToRemove = false;
+
+                this.update = function() {
+                    const currentTime = Date.now();
+                    const timePassed = currentTime - this.startTime;
+                    const ratio = timePassed / this.duration;
+
+                    if (ratio >= 1) {
+                        this.readyToRemove = true;
+                        return;
+                    }
+
+                    this.draw(ratio);
+                };
+
+                this.draw = function(ratio) {
+                    const ctx = state.ctx;
+                    ctx.save();
+
+                    ctx.globalAlpha = Math.max(0, 1 - ratio);
+
+                    ctx.fillStyle = '#d32f2f';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.maxRadius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ff9800';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.maxRadius * 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffff00';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.maxRadius * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.restore();
+                };
+            }
+
+            // Weapon
+            function getWeapons() {
+                return [
+                    new Weapon('Gun', 4, 140, 100, 'grey'),
+                    new Weapon('Snajpera', 10, 400, 700, 'red'),
+                    new Weapon('Shotgun', 20, 60, 1000, 'blue'),
+                    new Weapon('Bazooka', 50, 200, 3000, 'purple'),
+                ];
+            }
+
+            function Weapon(name, damage, weaponDistance, cooldownTime, color) {
+                this.name = name;
+                this.x = 0;
+                this.y = 0;
+                this.width = 30;
+                this.height = 10;
+                this.color = color;
+
+                this.line_x1 = 0;
+                this.line_y1 = 0;
+                this.line_x2 = 0;
+                this.line_y2 = 0;
+                this.damage = damage;
+                this.maxRange = weaponDistance;
+                this.bazookaRadius = 100;
+                this.cooldownTime = cooldownTime;
+
+                this.draw = function() {
+                    let ctx = state.ctx;
+                    ctx.save();
+                    ctx.beginPath();
+
+                    ctx.setLineDash([5, 5]);
+                    ctx.strokeStyle = this.color;
+                    ctx.lineWidth = 2;
+
+                    ctx.moveTo(this.line_x1, this.line_y1);
+                    ctx.lineTo(this.line_x2, this.line_y2);
+                    ctx.stroke();
+
+                    ctx.setLineDash([]);
+                    ctx.restore();
+
+                    const currentTime = Date.now();
+                    state.cooldown = currentTime - state.lastAttackTime;
+                };
+
+                this.attack = function(enemies) {
+                    const currentTime = Date.now();
+                    if (currentTime - state.lastAttackTime < this.cooldownTime) return;
+
+                    state.lastAttackTime = currentTime;
+                    for (let i = enemies.length - 1; i >= 0; i--) {
+                        const enemy = enemies[i];
+
+                        if (enemy.isTargetted && !enemy.isDead) {
+                            enemy.getDamage(this.damage);
+
+                            if (enemy.isDead) {
+                                if (enemy.isBoss) {
+                                    state.score += 50;
+                                    postMessage(`Boss defeated! +50 points`);
+                                } else {
+                                    state.score += 10;
+                                }
+                                enemy.isTargetted = false;
+                            }
+                        }
+                    }
+
+                    if (state.player.isTargetted) {
+                        state.player.getDamage(this.damage);
+                        postMessage(`You were too close to the Bazooka explosion!`);
+                        if (state.player.isDead) console.log(`Really?`);
+                    }
+
+                    if (this.name === 'Bazooka') {
+                        state.effects.push(new ExplosionEffect(this.line_x2, this.line_y2, this.bazookaRadius));
+                    }
+                };
+
+                this.updateBazooka = function(enemies) {
+                    const explosionPoint = {
+                        x: this.line_x2,
+                        y: this.line_y2
+                    };
+
+                    if (enemies) {
+                        for (let i = enemies.length - 1; i >= 0; i--) {
+                            const enemy = enemies[i];
+                            if (enemy.isDead) continue;
+
+                            const distToExplosion = getDistance(explosionPoint, enemy);
+                            if (distToExplosion <= this.bazookaRadius) {
+                                enemy.isTargetted = true;
+                            }
+                        }
+                    }
+
+                    const distToExplosionPlayer = getDistance(explosionPoint, state.player);
+                    if (distToExplosionPlayer <= this.bazookaRadius) {
+                        state.player.isTargetted = true;
+                    }
+                };
+
+                this.update = function(mouseObj, enemies) {
+                    this.line_x1 = state.player.x + (state.player.width / 2);
+                    this.line_y1 = state.player.y + (state.player.height / 2);
+
+                    const currentZoom = state.zoom || 1;
+
+                    const worldMouseX = (mouseObj.x / currentZoom) + (state.camera ? state.camera.x : 0);
+                    const worldMouseY = (mouseObj.y / currentZoom) + (state.camera ? state.camera.y : 0);
+
+                    const angle = Math.atan2(worldMouseY - this.line_y1, worldMouseX - this.line_x1);
+
+                    state.player.isTargetted = false;
+                    for (let i = 0; i < enemies.length; i++) {
+                        enemies[i].isTargetted = false;
+                    }
+
+                    let rayX = this.line_x1;
+                    let rayY = this.line_y1;
+                    let hit = false;
+                    const step = 5;
+                    let currentDistance = 0;
+
+                    while (!hit && currentDistance < this.maxRange) {
+                        rayX += Math.cos(angle) * step;
+                        rayY += Math.sin(angle) * step;
+                        currentDistance += step;
+
+                        if (typeof walls !== 'undefined') {
+                            for (let i = 0; i < walls.length; i++) {
+                                const wall = walls[i];
+
+                                if (rayX >= wall.x && rayX <= wall.x + wall.width &&
+                                    rayY >= wall.y && rayY <= wall.y + wall.height) {
+
+                                    hit = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!hit && enemies) {
+                            for (let i = 0; i < enemies.length; i++) {
+                                const enemy = enemies[i];
+
+                                if (rayX >= enemy.x && rayX <= enemy.x + enemy.width &&
+                                    rayY >= enemy.y && rayY <= enemy.y + enemy.height) {
+
+                                    hit = true;
+                                    enemy.isTargetted = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    this.line_x2 = rayX;
+                    this.line_y2 = rayY;
+
+                    if (this.name === 'Bazooka') {
+                        this.updateBazooka(enemies);
+                    }
+
+                    this.draw();
+                };
+
+                this.generate = function() {
+                    const ctx = state.ctx;
+                    ctx.save();
+
+                    ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+
+                    const sx = -this.width / 2;
+                    const sy = -this.height / 2;
+
+                    ctx.fillStyle = '#5c3a21';
+                    ctx.fillRect(sx, sy + 2, 6, 6);
+                    ctx.fillRect(sx + 6, sy + 4, 3, 3);
+
+                    ctx.fillStyle = '#2b2b2b';
+                    ctx.fillRect(sx + 9, sy + 3, 7, 5);
+
+                    ctx.fillStyle = '#111111';
+                    ctx.fillRect(sx + 10, sy + 8, 4, 2);
+                    ctx.fillStyle = '#7a8b99';
+                    ctx.fillRect(sx + 11, sy + 8, 2, 1);
+
+                    ctx.fillStyle = '#4a555c';
+                    ctx.fillRect(sx + 16, sy + 3, 14, 3);
+                    ctx.fillStyle = '#7a8b99';
+                    ctx.fillRect(sx + 16, sy + 3, 14, 1);
+
+                    ctx.fillStyle = '#7a4e2b';
+                    ctx.fillRect(sx + 15, sy + 6, 8, 3);
+                    ctx.fillStyle = '#3e2514';
+                    ctx.fillRect(sx + 16, sy + 6, 1, 3);
+                    ctx.fillRect(sx + 19, sy + 6, 1, 3);
+                    ctx.fillRect(sx + 22, sy + 6, 1, 3);
+
+                    ctx.restore();
+                };
+            }
+
+            // Game logic
+            let enemies = [];
+            let items = [];
+            let weapons = [];
+
+            function generateEnemies() {
+                for (let i = 0; i < state.gamemode.numberOfEnemies; i++) {
+                    const pos = getSafeSpawnPos(20, 40);
+                    const enemy = new Enemy(pos.x, pos.y, 20, 40);
+                    enemies.push(enemy);
+                    enemy.draw();
+                }
+                // generate boss
+                if (state.gamemode !== gamemodes[0]) {
+                    const pos = getSafeSpawnPos(50, 70);
+                    const enemy = new Enemy(pos.x, pos.y, 60, 90, true);
+                    enemies.push(enemy);
+                    enemy.draw();
+                }
+            }
+
+            function generateWeapons() {
+                for (let i = 1; i < weapons.length; i++) {
+                    const pos = getSafeSpawnPos(weapons[i].width, weapons[i].height);
+
+                    weapons[i].x = pos.x;
+                    weapons[i].y = pos.y;
+                    weapons[i].generate();
+                }
+            }
+
+            function generateItems() {
+                for (let i = 0; i < 10; i++) {
+                    const pos = getSafeSpawnPos(10, 20);
+                    const item = new Item(pos.x, pos.y)
+                    items.push(item);
+                    item.draw();
+                }
+            }
+
+            addEventListener('click', () => {
+                if (state.gameState === 'running') {
+                    state.player.currentWeapon.attack(enemies);
+                }
+            });
+
+            addEventListener('wheel', (e) => {
+                if (state.gameState === 'running') {
+                    let i = state.player.weapons.indexOf(state.player.currentWeapon);
+
+                    if (e.deltaY > 0) {
+                        i++;
+                        if (i >= state.player.weapons.length) i = 0;
+
+                    } else {
+                        i--;
+                        if (i < 0) i = state.player.weapons.length - 1;
+                    }
+
+                    state.player.currentWeapon = state.player.weapons[i];
+                    console.log(`Switched weapon to: ${state.player.currentWeapon.name}`);
+                    postMessage(`Switched weapon to: ${state.player.currentWeapon.name}`);
+                }
+            });
+
+            function init() {
+                state.lastAttackTime = 0;
+                state.effects.length = 0;
+                enemies.length = 0;
+                items.length = 0;
+                weapons = getWeapons();
+
+                drawMap();
+                state.player = new Player(150, 50, new Inventory());
+                generateEnemies();
+                generateWeapons();
+                generateItems();
+                state.player.setWeapon(weapons[0]);
+                state.player.draw()
+                drawHUD();
+            }
+
+            function game() {
+                if (!state.player || !state.player.currentWeapon) return;
+
+                const zoom = 2;
+                state.zoom = zoom;
+
+                state.camera = {
+                    x: state.player.x + (state.player.width / 2) - (state.canvas.width / 2 / zoom),
+                    y: state.player.y + (state.player.height / 2) - (state.canvas.height / 2 / zoom)
+                };
+
+                state.ctx.save();
+                state.ctx.scale(zoom, zoom);
+                state.ctx.translate(-state.camera.x, -state.camera.y);
+
+                drawMap();
+                cooldownbar(state.player.currentWeapon);
+
+                if (state.player.currentWeapon) {
+                    state.player.currentWeapon.update(mouse, enemies);
+                }
+                state.player.update();
+
+                for (let i = enemies.length - 1; i >= 0; i--) {
+                    enemies[i].update(enemies);
+
+                    if (enemies[i].readyToRemove) {
+                        enemies.splice(i, 1);
+                    }
+                }
+
+                for (let i = 1; i < weapons.length; i++) {
+                    weapons[i].generate();
+                    if (checkCollision(weapons[i], state.player)) {
+                        state.player.setWeapon(weapons[i]);
+                        console.log(`Picked up ${weapons[i].name}`);
+                        postMessage(`You picked up ${weapons[i].name}`);
+                        weapons.splice(i, 1);
+                    }
+                }
+
+                for (let i = 1; i < items.length; i++) {
+                    items[i].draw();
+                    if (checkCollision(items[i], state.player)) {
+                        state.player.inventory.healingItems++;
+                        console.log(`Picked up healing item`);
+                        items.splice(i, 1);
+                    }
+                }
+
+                for (let i = state.effects.length - 1; i >= 0; i--) {
+                    state.effects[i].update();
+
+                    if (state.effects[i].readyToRemove) {
+                        state.effects.splice(i, 1);
+                    }
+                }
+
+                state.ctx.restore();
+
+                drawHUD();
+
+                if (state.player.isDead) state.gameState = 'gameover';
+                if (enemies.length === 0) state.gameState = 'win';
+            }
+
+            function restart() {
+                state.player.health = 100;
+                state.player.isDead = false;
+                state.score = 0;
+                state.gamemode = gamemodes[0];
+
+                init();
+            }
+
+            // Main loop
+            initializeCanvas();
+
+            state.canvas.width = innerWidth;
+            state.canvas.height = innerHeight;
+
+            addEventListener("keydown", (e) => {
+                switch (e.keyCode) {
+                    case 27: // esc
+                        if (state.gameState === 'pause') {
+                            state.gameState = 'running';
+                        } else if (state.gameState === 'running') {
+                            state.gameState = 'pause';
+                        }
+                        break;
+                    case 13: // enter
+                        if (state.gameState === 'start' && state.gamemode !== null) {
+                            state.gameState = 'running';
+                            init();
+                        } else if (state.gameState === 'gameover' || state.gameState === 'win') {
+                            state.gameState = 'start';
+                            restart();
+                        }
+                        else if (state.gameState === 'pause') {
+                            state.gameState = 'start';
+                        }
+                        break;
+
+                    case 49: // 1
+                        if (state.gameState === 'start') state.gamemode = gamemodes[0];
+                        break;
+                    case 50: // 2
+                        if (state.gameState === 'start') state.gamemode = gamemodes[1];
+                        break;
+                    case 51: // 3
+                        if (state.gameState === 'start') state.gamemode = gamemodes[2];
+                        break;
+                }
+            })
+
+            addEventListener("click", () => {
+                if (state.gameState === 'start') {
+                    state.gameState = 'running';
+                    init();
+                }
+            })
+
+            addEventListener('resize', () => {
+                state.canvas.width = innerWidth
+                state.canvas.height = innerHeight
+            })
+
+            function run() {
+                requestAnimationFrame(run)
+                state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height)
+
+                switch (state.gameState) {
+                    case 'start':
+                        drawScreen(
+                            'black',
+                            'white',
+                            'SUPER COOL 2D SHOOTER',
+                            `press enter to start`,
+                            `Choose difficulty: ${state.gamemode.name} (1-Normal, 2-Hard, 3-Impossible)`,
+                            `Controls: WSAD, Shift to sprint`,
+                            `Click to shoot, Scroll to change weapon`,
+                            `Press Q to heal, ESC to pause`
+                        );
+                        break;
+                    case 'running':
+                        game();
+                        break;
+
+                    case 'pause':
+                        drawScreen('rgba(0, 0, 0, 0.5)', 'white', 'GAME PAUSED', 'press enter to restart');
+                        break;
+                    case 'gameover':
+                        drawScreen('black', 'red', "YOU'RE DEAD", 'press enter to restart', `collected points: ${state.score}` );
+                        break;
+                    case 'win':
+                        drawScreen('black', 'white', 'YOU WON!', 'press enter to restart', `collected points: ${state.score}`);
+                        break;
+                }
+            }
+
+            run()
+
+        })();
+    </script>
+</body>
+</html>
+

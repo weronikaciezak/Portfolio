@@ -102,6 +102,44 @@ const projects = [
 
 export const Projects = () => {
 
+    const handlePlay = () => {
+        window.open('/game/index.html', '_blank');
+    };
+
+    const renderActionButton = (action: string | string[], project: typeof projects[0]): React.ReactNode => {
+        if (Array.isArray(action)) {
+            return action.map((act) => renderActionButton(act, project));
+        }
+
+        if (action === "Private Repo") {
+            return (
+                <NoActionButton key={action}>
+                    Private Repo
+                </NoActionButton>
+            );
+        }
+
+        if (action === "Play") {
+            return (
+                <OpenButton key={action} onClick={() => handlePlay()}>
+                    Play
+                </OpenButton>
+            );
+        }
+
+        return (
+            <OpenButton
+                key={action}
+                as="a"
+                href={`https://github.com/weronikaciezak/${project.repoName}`}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {action}
+            </OpenButton>
+        );
+    };
+
     return (
         <Container>
             {projects.map((project) => (
@@ -116,14 +154,7 @@ export const Projects = () => {
                             <Title>{project.title}</Title>
 
                             <Container3>
-                                <OpenButton
-                                    as="a"
-                                    href={`https://github.com/weronikaciezak/${project.repoName}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {project.action}
-                                </OpenButton>
+                                {renderActionButton(project.action, project)}
                             </Container3>
                         </Container2>
                         <Description>{project.description}</Description>
@@ -273,39 +304,37 @@ const IconWrapper = styled.span<{ $color?: string }>`
     }
 `;
 
-const OpenButton = styled.button`
+const OpenButton = styled.div`
     width: fit-content;
     padding: 0.2rem 0.5rem;
     background-color: var(--primary-color);
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     font-size: 0.8rem;
     cursor: pointer;
     color: var(--text-color);
     text-decoration: none;
 
-    &:hover {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transform: scale(1.5);
-    }
-`;
-
-// const NoActionButton = styled.button`
-//     width: fit-content;
-//     padding: 0.2rem 0.5rem;
-//     background-color: var(--primary-color);
-//     border-radius: 0.5rem;
-//     font-size: 0.8rem;
-//     cursor: pointer;
-//     color: var(--text-color);
-//     text-decoration: none;
-// `;
-
-const Container3 = styled.div`
     transition: transform 0.3s ease, 0.3s ease;
     &:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transform: scale(1.1);
     }
+`;
+
+const NoActionButton = styled.div`
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--badge-color);
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--text-color);
+`;
+
+const Container3 = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.3rem;
 `;
 
 

@@ -48,7 +48,7 @@ const Container = styled.div`
     padding-bottom: var(--margin-xl);
 
     @media (max-width: 600px) {
-        padding: 7rem 0 6rem 0;
+        padding: 9rem 0 6rem 0;
     }
 `;
 
@@ -58,7 +58,7 @@ const H1 = styled.div`
     padding-bottom: var(--margin-xs);
 
     @media (max-width: 600px) {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 `;
 
