@@ -108,12 +108,18 @@ export const Projects = () => {
 
     const renderActionButton = (action: string | string[], project: typeof projects[0]): React.ReactNode => {
         if (Array.isArray(action)) {
-            return action.map((act) => renderActionButton(act, project));
+            return action.map((act, idx) => (
+                <React.Fragment key={`${project.id}-${act}-${idx}`}>
+                    {renderActionButton(act, project)}
+                </React.Fragment>
+            ));
         }
+
+        const key = `${project.id}-${action}`;
 
         if (action === "Private Repo") {
             return (
-                <NoActionButton key={action}>
+                <NoActionButton key={key}>
                     Private Repo
                 </NoActionButton>
             );
@@ -121,7 +127,7 @@ export const Projects = () => {
 
         if (action === "Play") {
             return (
-                <OpenButton key={action} onClick={() => handlePlay()}>
+                <OpenButton key={key} onClick={() => handlePlay()}>
                     Play
                 </OpenButton>
             );
@@ -129,7 +135,7 @@ export const Projects = () => {
 
         return (
             <OpenButton
-                key={action}
+                key={key}
                 as="a"
                 href={`https://github.com/weronikaciezak/${project.repoName}`}
                 target="_blank"
@@ -143,8 +149,8 @@ export const Projects = () => {
     return (
         <Container>
             {projects.map((project) => (
-                <AnimatedCard>
-                <Project key={project.id}>
+                <AnimatedCard key={project.id}>
+                <Project>
                     <ImageWrapper>
                         <Image src={project.image}/>
                     </ImageWrapper>

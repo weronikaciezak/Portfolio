@@ -29,11 +29,11 @@ export const Skills = () => {
     return(
         <Container role="list">
             {skills.map(({ icon: Icon, name }) => (
-                <AnimatedCard>
-                <Tile key={name} role="listitem" title={`${name}`}>
-                    <Icon color="var(--icon-color)" size="3rem" aria-label={`${name}`} />
-                    <Text>{name}</Text>
-                </Tile>
+                <AnimatedCard key={name}>
+                    <Tile role="listitem" title={`${name}`}>
+                        <Icon color="var(--icon-color)" size="3rem" aria-label={`${name}`} />
+                        <Text>{name}</Text>
+                    </Tile>
                 </AnimatedCard>
             ))}
         </Container>
