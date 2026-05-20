@@ -52,7 +52,6 @@ const Tile = styled.div`
     align-items: center;
     border-radius: 0.5rem;
     gap: 0.3rem;
-    //background-color: var(--primary-color);
     
     transition: transform 0.3s ease, background-color 0.3s ease;
     &:hover {
@@ -61,7 +60,7 @@ const Tile = styled.div`
         filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
     }
 
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.09);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.09);

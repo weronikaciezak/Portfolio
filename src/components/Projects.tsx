@@ -96,7 +96,7 @@ const projects = [
         badges: ["HTML5 Canvas", "JavaScript"],
         repoName: "web-shooter",
         image: simpletodo,
-        action: "Play"
+        action: ["Play", "Open Repo"]
     }
 ];
 
@@ -114,7 +114,8 @@ export const Projects = () => {
                     <Content>
                         <Container2>
                             <Title>{project.title}</Title>
-                            <div>
+
+                            <Container3>
                                 <OpenButton
                                     as="a"
                                     href={`https://github.com/weronikaciezak/${project.repoName}`}
@@ -123,7 +124,7 @@ export const Projects = () => {
                                 >
                                     {project.action}
                                 </OpenButton>
-                            </div>
+                            </Container3>
                         </Container2>
                         <Description>{project.description}</Description>
 
@@ -160,13 +161,14 @@ const Container2 = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: top;
+    align-items: start;
+    flex-wrap: wrap;
 `;
 
 const Project = styled.div`
     display: flex;
     gap: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     padding: 0.7rem;
 
     text-decoration: none;
@@ -180,12 +182,12 @@ const Project = styled.div`
 
     //background: linear-gradient(130deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.03) 100%);
     background: linear-gradient(130deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-    //background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.09); 
 
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
         flex-direction: column;
     }
 `;
@@ -213,7 +215,7 @@ const Image = styled.img`
     display: block;
     background-size: cover;
     background-position: center;
-    height: 12rem;
+    height: 11rem;
     border-radius: 0.3rem;
 
     @media (max-width: 600px) {
@@ -225,7 +227,7 @@ const Image = styled.img`
 
 const Title = styled.div`
     padding-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
     font-family: "Unbounded", sans-serif;
     font-size: 1.2rem;
 `;
@@ -235,6 +237,7 @@ const Description = styled.p`
     font-size: 0.9rem;
     color: var(--description-color);
     line-height: 1.5;
+    padding-bottom: 0.3rem;
 `;
 
 const BadgeContainer = styled.div`
@@ -252,7 +255,7 @@ const Badge = styled.div`
     //filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     border-radius: 0.4rem;
     font-size: 0.7rem;
-    font-family: "Young Serif", serif;
+    //font-family: "Young Serif", serif;
     display: flex;
     align-items: center;
     gap: 0.35rem;
@@ -275,15 +278,33 @@ const OpenButton = styled.button`
     padding: 0.2rem 0.5rem;
     background-color: var(--primary-color);
     border-radius: 0.5rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: transform 0.3s ease, 0.3s ease;
     color: var(--text-color);
     text-decoration: none;
 
     &:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transform: scale(2);
+        transform: scale(1.5);
+    }
+`;
+
+// const NoActionButton = styled.button`
+//     width: fit-content;
+//     padding: 0.2rem 0.5rem;
+//     background-color: var(--primary-color);
+//     border-radius: 0.5rem;
+//     font-size: 0.8rem;
+//     cursor: pointer;
+//     color: var(--text-color);
+//     text-decoration: none;
+// `;
+
+const Container3 = styled.div`
+    transition: transform 0.3s ease, 0.3s ease;
+    &:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transform: scale(1.1);
     }
 `;
 
