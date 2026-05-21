@@ -3,6 +3,7 @@ import simpletodo from '../assets/simpletodo.png';
 import webshooter from '../assets/webshooter.png';
 import statify from '../assets/statify.png';
 import bookstore from '../assets/bookstore.png';
+import noimage from '../assets/noimage.png';
 import React from "react";
 import {AnimatedCard} from "./AnimatedCard.tsx";
 
@@ -79,7 +80,7 @@ const projects = [
         description: "A native Android social fitness app built with Kotlin Jetpack Compose, and Google Firebase, featuring user matching, custom workouts, and interactive challenges.",
         badges: ["Kotlin", "Firestore", "Firebase Authentication"],
         repoName: "GymBros",
-        image: simpletodo,
+        image: noimage,
         action: "Open Repo"
     },
     {
@@ -252,7 +253,7 @@ const Image = styled.img`
     display: block;
     background-size: cover;
     background-position: center;
-    height: 11rem;
+    height: 15rem;
     border-radius: 0.3rem;
     //filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 

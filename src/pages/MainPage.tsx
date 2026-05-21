@@ -58,7 +58,7 @@ const H1 = styled.div`
     padding-bottom: var(--margin-xs);
 
     @media (max-width: 600px) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 `;
 
