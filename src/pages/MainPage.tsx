@@ -14,7 +14,7 @@ export const MainPage = () => {
             <AnimatedCard>
                 <Container>
                     <Typewriter/>
-                    <H1>hi I'm Weronika 👋</H1>
+                    <H1>Hi I'm Weronika 👋</H1>
                     <span>I am a 4th year Computer Science student from Poland.</span>
                     <span>I create full-stack applications.</span>
                     <Socials/>

@@ -31,7 +31,7 @@ export const Skills = () => {
             {skills.map(({ icon: Icon, name }) => (
                 <AnimatedCard key={name}>
                     <Tile role="listitem" title={`${name}`}>
-                        <Icon color="var(--icon-color)" size="3rem" aria-label={`${name}`} />
+                        <Icon color="var(--text-color)" size="3rem" aria-label={`${name}`} />
                         <Text>{name}</Text>
                     </Tile>
                 </AnimatedCard>
@@ -44,22 +44,22 @@ const Tile = styled.div`
     height: 6rem;
     width: auto;
     min-height: 6rem;
-
+    
     padding: 0.1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     gap: 0.3rem;
     
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, 0.3s ease;
     &:hover {
         background-color: var(--primary-color);
-        transform: scale(1.05);
+        transform: scale(1.1);
         filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
     }
-
+    color: var(--text-color);
     background: rgba(255, 255, 255, 0.09);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -79,7 +79,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.div`
-    color: var(--icon-color);
+    color: var(--text-color);
     margin-bottom: -0.3rem;
     text-align: center;
     font-size: 0.8rem;

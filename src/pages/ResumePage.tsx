@@ -54,22 +54,22 @@ export const ResumePage = () => {
         <Layout title="Weronika Ciężak | Resume">
             <Container>
                 <AnimatedCard>
-                    <Button2 onClick={setToPolish}>
+                    <Button onClick={setToPolish}>
                         🇵🇱
-                    </Button2>
+                    </Button>
                 </AnimatedCard>
 
                 <AnimatedCard>
-                <Button2 onClick={setToEnglish}>
+                <Button onClick={setToEnglish}>
                         🇬🇧
-                    </Button2>
+                    </Button>
                 </AnimatedCard>
 
                 <AnimatedCard>
-                    <Button2 onClick={downloadResume}>
+                    <Button onClick={downloadResume}>
                         <i className="fa-solid fa-download fa-l"></i>
                         Download
-                    </Button2>
+                    </Button>
                 </AnimatedCard>
             </Container>
 
@@ -98,16 +98,17 @@ const Container = styled.div`
     padding: 0 0 0.6rem 0;
 `;
 
-const Button2 = styled.div`
+const Button = styled.div`
     cursor: pointer;
     user-select: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-color);
+    border-radius: var(--border-radius);
     transition: transform 0.2s ease, 0.2s ease;
     gap: 0.5rem;
 
     text-decoration: none;
-    border-radius: 0.5rem;
+    
     padding: 0.2rem 0.5rem;
     width: fit-content;
     background: rgba(255, 255, 255, 0.09);

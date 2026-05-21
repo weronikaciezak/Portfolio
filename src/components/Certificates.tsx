@@ -34,7 +34,7 @@ const Container = styled.div`
     display: flex;
     color: inherit;
 
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     cursor: pointer;
 
     backdrop-filter: blur(10px);
@@ -42,15 +42,17 @@ const Container = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    //background: linear-gradient(135deg, var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: transform 0.3s ease, 0.3s ease;
 
     @media (max-width: 768px) {
         flex-direction: column;
     }
     
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.04);
+        //background: var(--bg2-color);
     }
 `
 
@@ -60,6 +62,7 @@ const Text = styled.div`
 
 const SmallText = styled.div`
     font-size: 0.7rem;
+    color: var(--description-color);
 `
 
 const Image = styled.img`

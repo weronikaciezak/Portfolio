@@ -40,7 +40,7 @@ export const Footer = () => {
 
 const Container = styled.div`
     padding-top: var(--margin-xxxl);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid color-mix(in srgb, var(--text-color) 20%, transparent);
 `;
 
 const Container2 = styled.div`

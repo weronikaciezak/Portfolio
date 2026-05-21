@@ -44,7 +44,7 @@ const colorMap: { [key: string]: string } = {
     "Jenkins": "#ea4330",
     "Express": "#000000",
     "Kotlin": "#7043f4",
-    "Django": "#092E20",
+    "Django": "#1c7552",
     "React": "#61DAFB",
     "Firebase Authentication": "#FFCA28",
     "Firestore": "#FFCA28",
@@ -94,7 +94,7 @@ const projects = [
     {
         id: 5,
         title: "Web Shooter",
-        description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, and health regeneration. Also a Bazooka.",
+        description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, and health regeneration. Also a Bazooka. You can't play it on moblie.",
         badges: ["HTML5 Canvas", "JavaScript"],
         repoName: "web-shooter",
         image: webshooter,
@@ -121,22 +121,20 @@ export const Projects = () => {
 
         if (action === "Private Repo") {
             return (
-                <NoActionButton key={key}>
-                    Private Repo
-                </NoActionButton>
+                <div style={{fontSize: "0.9rem"}}>Private Repo</div>
             );
         }
 
         if (action === "Play") {
             return (
-                <OpenButton key={key} onClick={() => handlePlay()}>
-                    Play
-                </OpenButton>
+                <Button style={{backgroundColor: "#228B22"}} key={key} onClick={() => handlePlay()}>
+                    ▷ Play
+                </Button>
             );
         }
 
         return (
-            <OpenButton
+            <Button
                 key={key}
                 as="a"
                 href={`https://github.com/weronikaciezak/${project.repoName}`}
@@ -144,7 +142,7 @@ export const Projects = () => {
                 rel="noopener noreferrer"
             >
                 {action}
-            </OpenButton>
+            </Button>
         );
     };
 
@@ -192,7 +190,7 @@ export const Projects = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.7rem;
     flex-wrap: wrap;
 `;
 
@@ -207,7 +205,7 @@ const Container2 = styled.div`
 const Project = styled.div`
     display: flex;
     gap: 1rem;
-    border-radius: 0.4rem;
+    border-radius: var(--border-radius);
     padding: 0.7rem;
 
     text-decoration: none;
@@ -256,6 +254,7 @@ const Image = styled.img`
     background-position: center;
     height: 11rem;
     border-radius: 0.3rem;
+    //filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 
     @media (max-width: 600px) {
         width: 100%;
@@ -268,14 +267,13 @@ const Title = styled.div`
     padding-top: 1rem;
     padding-bottom: 0.3rem;
     font-family: "Unbounded", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 `;
 
 const Description = styled.p`
     margin: 0;
     font-size: 0.9rem;
     color: var(--description-color);
-    line-height: 1.5;
     padding-bottom: 0.3rem;
 `;
 
@@ -292,7 +290,7 @@ const Badge = styled.div`
     background-color: rgba(255, 255, 255, 0.1);
     //border: 1px solid rgba(255, 255, 255, 0.1);
     //filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-    border-radius: 0.4rem;
+    border-radius: var(--border-radius-s);
     font-size: 0.7rem;
     //font-family: "Young Serif", serif;
     display: flex;
@@ -312,11 +310,11 @@ const IconWrapper = styled.span<{ $color?: string }>`
     }
 `;
 
-const OpenButton = styled.div`
+const Button = styled.div`
     width: fit-content;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.8rem;
     background-color: var(--primary-color);
-    border-radius: 0.3rem;
+    border-radius: 1rem;
     font-size: 0.8rem;
     cursor: pointer;
     color: var(--text-color);
@@ -325,17 +323,9 @@ const OpenButton = styled.div`
     transition: transform 0.3s ease, 0.3s ease;
     &:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: var(--secondary-color);
         transform: scale(1.1);
     }
-`;
-
-const NoActionButton = styled.div`
-    width: fit-content;
-    padding: 0.2rem 0.5rem;
-    background-color: var(--badge-color);
-    border-radius: 0.3rem;
-    font-size: 0.8rem;
-    color: var(--text-color);
 `;
 
 const Container3 = styled.div`

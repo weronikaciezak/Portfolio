@@ -61,8 +61,7 @@ const Text = styled.div`
 
     transition: transform 0.2s ease, 0.2s ease;
     &:hover {
-        transform: scale(1.02);
-        color: white;
+        transform: scale(1.05);
     }
     
 `;

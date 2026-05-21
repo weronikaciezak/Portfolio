@@ -83,11 +83,12 @@ const Container = styled.div`
 
 const Icon = styled.div`
     cursor: pointer;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     transition: transform 0.3s ease, 0.3s ease;
 
     :hover {
         color: var(--text-color);
+        transform: scale(1.1);
     }
 `;
 
