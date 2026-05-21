@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import simpletodo from '../assets/simpletodo.png';
+import webshooter from '../assets/webshooter.png';
+import statify from '../assets/statify.png';
 import bookstore from '../assets/bookstore.png';
 import React from "react";
 
@@ -86,7 +88,7 @@ const projects = [
         description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages. I was responsible for creating the frontend interface.",
         badges: ["Django", "React"],
         repoName: "Statify",
-        image: simpletodo,
+        image: statify,
         action: "Private Repo"
     },
     {
@@ -95,7 +97,7 @@ const projects = [
         description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, and health regeneration. Also a Bazooka.",
         badges: ["HTML5 Canvas", "JavaScript"],
         repoName: "web-shooter",
-        image: simpletodo,
+        image: webshooter,
         action: ["Play", "Open Repo"]
     }
 ];
