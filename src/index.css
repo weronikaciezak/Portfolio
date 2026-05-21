@@ -34,14 +34,28 @@ body {
     --bg3-color: #100e1d;
 
     --bg2-color: #6A6A88;
-    --text-color: #DFDEF9;
-    --primary-color: #665c84;
-    --secondary-color:#DFDEF9; /*title color*/
+    /*--text-color: #DFDEF9;*/
+    /*--primary-color: #665c84;*/
+    /*--secondary-color:#DFDEF9; !*title color*!*/
     --icon-color: #DFDEF9;
-    --accent-color: #8b9e1f;
+    /*--accent-color: #8b9e1f;*/
     --opacity: 0.09;
     --badge-color: #483875;
     --description-color: #c6c5dd;
+
+    --text-color: #dddcf9;
+    --background: #0f0d1c;
+    --primary-color: #665c84;
+    --secondary-color: #5d4365;
+    --accent-color: #a1729e;
+}
+
+[data-theme="dark"] {
+    --text-color: #070623;
+    --background: #e5e3f2;
+    --primary-color: #857ba3;
+    --secondary-color: #b49abc;
+    --accent-color: #8d5e8a;
 }
 
 :root, #root, body {

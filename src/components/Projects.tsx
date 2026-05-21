@@ -4,6 +4,7 @@ import webshooter from '../assets/webshooter.png';
 import statify from '../assets/statify.png';
 import bookstore from '../assets/bookstore.png';
 import React from "react";
+import {AnimatedCard} from "./AnimatedCard.tsx";
 
 import {
     SiSpringboot,
@@ -18,7 +19,6 @@ import {
     SiHtml5,
     SiJavascript, SiHibernate, SiThymeleaf
 } from '@icons-pack/react-simple-icons';
-import {AnimatedCard} from "./AnimatedCard.tsx";
 
 const iconMap: { [key: string]: React.ComponentType } = {
     "JavaScript": SiJavascript,
