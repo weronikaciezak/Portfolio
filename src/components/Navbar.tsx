@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import {Switch} from "./Switch.tsx";
 import {useNavigate} from "react-router-dom";
 
 export const Navbar = () => {
@@ -9,7 +8,6 @@ export const Navbar = () => {
     // const redirectContact = () => navigate("/contact");
 
     return(
-
         <Wrapper>
             <Container1>
                 <Text onClick={redirectHome}>Home</Text>
@@ -18,7 +16,6 @@ export const Navbar = () => {
             <Container2>
                 <Dot></Dot>
                 <Font>Open to work</Font>
-                {/*<Switch/>*/}
             </Container2>
         </Wrapper>
 
