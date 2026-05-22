@@ -97,7 +97,7 @@ const Container = styled.div`
     justify-content: flex-start;
     //align-items: flex-end;
     gap: 0.5rem;
-    padding: 0 0 1rem 0;
+    padding: 1rem 0 1rem 0;
 
 `;
 

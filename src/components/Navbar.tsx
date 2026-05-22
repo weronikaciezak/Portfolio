@@ -41,8 +41,8 @@ const Container1 = styled.div`
     //gap: 3.5rem;
     gap: clamp(0.5rem, 3vw, 3.5rem);
     @media (max-width: 600px) {
-        flex-direction: column;
-        gap: 0.5rem;
+        //flex-direction: column;
+        gap: 1.8rem;
         align-items: flex-start;
     }
 `;

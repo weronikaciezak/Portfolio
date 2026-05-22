@@ -34,6 +34,6 @@ const H1 = styled.div`
     color: var(--secondary-color);
     
     @media (max-width: 600px) {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 `;
