@@ -52,7 +52,7 @@ const Container = styled.div`
     
     &:hover {
         transform: scale(1.04);
-        //background: var(--bg2-color);
+        background: rgba(255, 255, 255, 0.15);
     }
 `
 

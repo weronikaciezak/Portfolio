@@ -86,7 +86,7 @@ const projects = [
     {
         id: 4,
         title: "Statify",
-        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages. I was responsible for creating the frontend interface.",
+        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics. I was responsible for creating the frontend interface.",
         badges: ["Django", "React"],
         repoName: "Statify",
         image: statify,
@@ -208,19 +208,13 @@ const Project = styled.div`
     gap: 1rem;
     border-radius: var(--border-radius);
     padding: 0.7rem;
-
     text-decoration: none;
     color: inherit;
-    
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    &:hover {
-        //transform: scale(1.05);
-    }
-
-    //background: linear-gradient(130deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.03) 100%);
-    background: linear-gradient(130deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-    background: rgba(255, 255, 255, 0.1);
+    //background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.03) 100%);
+    background: linear-gradient(130deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 100%);
+    //background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.09); 

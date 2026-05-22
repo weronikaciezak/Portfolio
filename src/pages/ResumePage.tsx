@@ -5,6 +5,8 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import resumeEN from "../assets/resumeEN.pdf";
 import resumePL from "../assets/resumePL.pdf";
+import flagPL from "../assets/flag_pl.png";
+import flagUK from "../assets/flag_uk.png";
 import styled from "styled-components";
 import {AnimatedCard} from "../components/AnimatedCard.tsx";
 
@@ -55,13 +57,13 @@ export const ResumePage = () => {
             <Container>
                 <AnimatedCard>
                     <Button onClick={setToPolish}>
-                        🇵🇱
+                        <FlagImage src={flagPL} alt="Polish flag" />
                     </Button>
                 </AnimatedCard>
 
                 <AnimatedCard>
                 <Button onClick={setToEnglish}>
-                        🇬🇧
+                        <FlagImage src={flagUK} alt="UK flag" />
                     </Button>
                 </AnimatedCard>
 
@@ -93,22 +95,25 @@ export const ResumePage = () => {
 const Container = styled.div`
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    //align-items: flex-end;
     gap: 0.5rem;
-    padding: 0 0 0.6rem 0;
+    padding: 0 0 1rem 0;
+
 `;
 
 const Button = styled.div`
     cursor: pointer;
     user-select: none;
     font-size: 1rem;
+    height: 100%;
     color: var(--text-color);
     border-radius: var(--border-radius);
     transition: transform 0.2s ease, 0.2s ease;
     gap: 0.5rem;
-
     text-decoration: none;
-    
+    align-items: center;
+    justify-content: center;
+    display: flex;
     padding: 0.2rem 0.5rem;
     width: fit-content;
     background: rgba(255, 255, 255, 0.09);
@@ -133,3 +138,10 @@ const PdfDocumentShell = styled.div`
 const PdfPageShell = styled.div`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
+
+const FlagImage = styled.img`
+    width: 1.5rem;
+    height: 1rem;
+    object-fit: cover;
+`;
+
