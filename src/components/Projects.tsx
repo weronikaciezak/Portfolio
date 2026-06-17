@@ -95,7 +95,7 @@ const projects = [
     {
         id: 5,
         title: "Web Shooter",
-        description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, and health regeneration. Also a Bazooka. You can't play it on moblie.",
+        description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, health regeneration and a Bazooka. You can't play it on moblie.",
         badges: ["HTML5 Canvas", "JavaScript"],
         repoName: "web-shooter",
         image: webshooter,
@@ -215,8 +215,9 @@ const Project = styled.div`
     //background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.03) 100%);
     background: linear-gradient(130deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 100%);
     //background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(46, 45, 58, 0.8);
+    //backdrop-filter: blur(10px);
+    //-webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.09); 
 
     @media (max-width: 800px) {
