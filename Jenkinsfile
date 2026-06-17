@@ -16,6 +16,12 @@ pipeline {
             }
         }
 
+        stage('Delete existing frontend image') {
+                    steps {
+                        sh 'docker rmi $(docker images "portfolio" -f "dangling=true" -q) 2>/dev/null || true'
+                    }
+                }
+
         stage('Build frontend') {
             steps {
                 sh 'docker build -t $FRONTEND_IMAGE .'
