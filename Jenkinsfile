@@ -18,7 +18,7 @@ pipeline {
 
         stage('Delete existing frontend image') {
                     steps {
-                        sh 'docker rmi $(docker images "portfolio" -f "dangling=true" -q) 2>/dev/null || true'
+                        sh 'docker system prune -f'
                     }
                 }
 
