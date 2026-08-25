@@ -86,7 +86,7 @@ const projects = [
     {
         id: 4,
         title: "Statify",
-        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics. I was responsible for creating the frontend interface.",
+        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics.",
         badges: ["Django", "React"],
         repoName: "Statify",
         image: statify,
