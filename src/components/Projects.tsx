@@ -58,12 +58,12 @@ const colorMap: { [key: string]: string } = {
 const projects = [
     {
         id: 1,
-        title: "Bookstore",
-        description: "A full-stack web application for bookstore management built with Spring Boot, Thymeleaf, Hibernate, and PostgreSQL.",
-        badges: ["☕️ Java", "Spring Boot", "Hibernate", "Thymeleaf", "PostgreSQL"],
-        repoName: "Bookstore",
-        image: bookstore,
-        action: "Open Repo"
+        title: "Statify",
+        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics.",
+        badges: ["Django", "React"],
+        repoName: "Statify",
+        image: statify,
+        action: "Private Repo"
     },
     {
         id: 2,
@@ -76,21 +76,21 @@ const projects = [
     },
     {
         id: 3,
+        title: "Bookstore",
+        description: "A full-stack web application for bookstore management built with Spring Boot, Thymeleaf, Hibernate, and PostgreSQL.",
+        badges: ["☕️ Java", "Spring Boot", "Hibernate", "Thymeleaf", "PostgreSQL"],
+        repoName: "Bookstore",
+        image: bookstore,
+        action: "Open Repo"
+    },
+    {
+        id: 4,
         title: "GymBros",
         description: "A native Android social fitness app built with Kotlin Jetpack Compose, and Google Firebase, featuring user matching, custom workouts, and interactive challenges.",
         badges: ["Kotlin", "Firestore", "Firebase Authentication"],
         repoName: "GymBros",
         image: noimage,
         action: "Open Repo"
-    },
-    {
-        id: 4,
-        title: "Statify",
-        description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics.",
-        badges: ["Django", "React"],
-        repoName: "Statify",
-        image: statify,
-        action: "Private Repo"
     },
     {
         id: 5,
