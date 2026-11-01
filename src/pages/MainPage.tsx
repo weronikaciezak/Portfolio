@@ -10,12 +10,12 @@ import {AnimatedCard} from "../components/AnimatedCard.tsx";
 export const MainPage = () => {
 
     return (
-        <Layout title="Weronika Ciężak | Developer Portfolio">
+        <Layout title="Weronika Ciężak | Portfolio">
             <AnimatedCard>
                 <Container>
                     <Typewriter/>
-                    <H1>Hi I'm Weronika 👋</H1>
-                    <span>I am a 4th year Computer Science student from Poland.</span>
+                    <H1>Hi I'm Weronika</H1>
+                    <span>I am a 5th year Computer Science student from Poland.</span>
                     <span>I create full-stack applications.</span>
                     <Socials/>
                 </Container>
