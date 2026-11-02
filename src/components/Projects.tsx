@@ -58,6 +58,15 @@ const colorMap: { [key: string]: string } = {
 const projects = [
     {
         id: 1,
+        title: "Portfolio website",
+        description: "The site you are on right now! Built with React, TypeScript, and styled-components. It sits on my ",
+        badges: ["React", "Jenkins", "Docker"],
+        repoName: "Portfolio",
+        image: webshooter,
+        action: ["Open Repo"]
+    },
+    {
+        id: 2,
         title: "Statify",
         description: "Developed as a team project, Statify is a Django-based web application that fetches listening data from Spotify and Last.fm to generate music collages and visualize statistics.",
         badges: ["Django", "React"],
@@ -66,7 +75,7 @@ const projects = [
         action: "Private Repo"
     },
     {
-        id: 2,
+        id: 3,
         title: "Simple To-Do",
         description: "A Node.js and PostgreSQL application containerized with Docker, using automated CI/CD deployment pipeline built with Jenkins to deploy code upon commit.",
         badges: ["JavaScript", "PostgreSQL", "Docker", "Jenkins"],
@@ -75,7 +84,7 @@ const projects = [
         action: "Open Repo"
     },
     {
-        id: 3,
+        id: 4,
         title: "Bookstore",
         description: "A full-stack web application for bookstore management built with Spring Boot, Thymeleaf, Hibernate, and PostgreSQL.",
         badges: ["☕️ Java", "Spring Boot", "Hibernate", "Thymeleaf", "PostgreSQL"],
@@ -84,7 +93,7 @@ const projects = [
         action: "Open Repo"
     },
     {
-        id: 4,
+        id: 5,
         title: "GymBros",
         description: "A native Android social fitness app built with Kotlin Jetpack Compose, and Google Firebase, featuring user matching, custom workouts, and interactive challenges.",
         badges: ["Kotlin", "Firestore", "Firebase Authentication"],
@@ -93,7 +102,7 @@ const projects = [
         action: "Open Repo"
     },
     {
-        id: 5,
+        id: 6,
         title: "Web Shooter",
         description: "2D game with 3 game modes where players score points by defeating enemies. It implements mechanics like collisions, raycasting, weapon cooldowns, health regeneration and a Bazooka. You can't play it on moblie.",
         badges: ["HTML5 Canvas", "JavaScript"],
