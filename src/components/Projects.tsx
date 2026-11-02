@@ -4,6 +4,7 @@ import webshooter from '../assets/webshooter.png';
 import statify from '../assets/statify.png';
 import bookstore from '../assets/bookstore.png';
 import noimage from '../assets/noimage.png';
+import portfolio from '../assets/portfolio.png';
 import React from "react";
 import {AnimatedCard} from "./AnimatedCard.tsx";
 
@@ -62,7 +63,7 @@ const projects = [
         description: "The site you are on right now! Built with React, TypeScript, and styled-components. It sits on my ",
         badges: ["React", "Jenkins", "Docker"],
         repoName: "Portfolio",
-        image: webshooter,
+        image: portfolio,
         action: ["Open Repo"]
     },
     {
