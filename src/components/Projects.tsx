@@ -60,7 +60,7 @@ const projects = [
     {
         id: 1,
         title: "Portfolio website",
-        description: "The site you are on right now! Built with React, TypeScript, and styled-components. It sits on my ",
+        description: "The site you are on right now! Built with React, TypeScript, and styled-components. It's hosted on my Raspberry Pi and is deployed using Docker and Jenkins.",
         badges: ["React", "Jenkins", "Docker"],
         repoName: "Portfolio",
         image: portfolio,
